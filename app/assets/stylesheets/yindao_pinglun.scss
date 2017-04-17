@@ -1,0 +1,58 @@
+.common-bottom{
+  background-color: #fff;
+  overflow: hidden;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto 50px auto;
+  .t1{
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    line-height: 1.7;
+    padding-top: 20px;
+  }
+  .t2{
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    line-height: 1.7;
+  }
+  a{
+    color: #222222;
+    text-decoration: none;
+    outline: 0;
+  }
+  .c-btn{
+    width: 80px;
+    height: 80px;
+    margin: 15px auto 0;
+    background-color: rgba(253,99,99,.13);
+    overflow: hidden;
+    border-radius: 40px;
+    .mid{
+      width: 70px;
+      height: 70px;
+      margin: 5px;
+      background-color: rgba(253,99,99,.43);
+      border-radius: 35px;
+      overflow: hidden;
+      .inner{
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        background-color: rgba(253,99,99,1);
+        color: #fff;
+        font-size: 12px;
+        line-height: 60px;
+        text-align: center;
+        border-radius: 30px;
+      }
+    }
+  }
+  .slogan{
+    width: 149px;
+    height: 15px;
+    margin: 33px auto 23px;
+    background-size: cover;
+  }
+}

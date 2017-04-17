@@ -1,0 +1,72 @@
+- title @title
+- ui_title = URI.encode('御魂图鉴')
+
+.container
+  .row{style: "margin-top:20px"}
+    .col-sm-12.col-xs-12
+      %p.title
+        %span.label.label-info.tag-label 
+          %a{href: "/yys/yuhun/0/?isFirst=0"} 全部
+        %span.label.label-info.tag-label 
+          %a{href: "/yys/yuhun/1/?isFirst=0"} 输出
+        %span.label.label-info.tag-label 
+          %a{href: "/yys/yuhun/2/?isFirst=0"} 防御
+        %span.label.label-info.tag-label 
+          %a{href: "/yys/yuhun/3/?isFirst=0"} 控制
+        %span.label.label-info.tag-label 
+          %a{href: "/yys/yuhun/4/?isFirst=0"} 辅助
+      .split
+    - @yuhuns.each_with_index do |yuhun, index|
+      .col-sm-4.col-xs-4.col-md-3
+        %a{href: "/yys/tag/#{URI.encode(yuhun.name)}/"} 
+          %img.img-rounded.center-block{src: "#{yuhun.img_url}", style: "height: 80px"}
+        %a{href: "/yys/tag/#{URI.encode(yuhun.name)}/"} 
+          %p.text-center{style: "height: 40px; overflow: hidden"}
+            #{yuhun.name} 
+            %br
+            #{yuhun.type_1} - #{yuhun.type_2}
+        .split
+    .col-sm-12.col-xs-12
+      %h2.title 御魂位与基础属性关系
+      %p
+        一号位：固定攻击
+        %br
+        二号位：固定速度、攻击百分比、防御百分比、生命百分比
+        %br
+        三号位：固定防御
+        %br
+        四号位：命中效果、抵抗、攻击百分比、防御百分比、生命百分比
+        %br
+        五号位：固定生命
+        %br
+        六号位：暴击、暴击倍率(增加暴击伤害)、攻击百分比、防御百分比、生命百分比
+      %h3.title 额外说明
+      %p
+        额外属性最多三条，每当升级到3、6、9、12、15时会随机强化四条属性中的一条，所以有无用的额外属性是件很蛋疼的事情。就算一开始没有额外属性，在这几个等级时都有可能将升级点数浪费在一种未知属性上
+      %p
+        一、三、五号位置的这种固定值设计是非常必要的，不要费力气执着于刷三、五号位主攻击属性的御魂啦，至少现在版本是没有的。
+      %p
+        阴阳师里没有魔法攻击和物理攻击的区别，攻击、防御、生命就是一个式神的最基本的三围，固定数值的加强可以有效弥补式神先天属性的不足，(尤其是对输出型式神，固定防御和固定生命能让输出式神站住不至于被秒杀)。
+      %p
+        降低了全生命(想象下全生命百分比和固定生命的狸猫...)、全攻击这种极端的可能性和强度，2、4、6号位又给予式神足够的多样性
+      %h3.title 御魂掉落大全
+      %p 
+        周一：地藏像  雪幽魂  鸣屋  网切
+        %br
+        周二：涅槃之火  招财猫  狰  三味
+        %br
+        周三：被服  魅妖  阴摩罗  魍魉之匣
+        %br
+        周四：树妖  反枕  心眼  针女
+        %br
+        周五：镜姬  日女巳时  钟灵  破势
+        %br
+        周末：随机掉落所有御魂
+        %br
+        神秘商店：伤魂鸟  镇墓兽  骰子鬼  珍珠  火灵
+        %br
+        剧情副本：轮入道  蝠翼  蚌精
+        %br
+        业原火副本：返魂香  木魅  薙魂
+  .split
+= render partial: "/yys/footer_yindaopinglun"

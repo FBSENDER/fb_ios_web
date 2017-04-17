@@ -1,0 +1,38 @@
+- title @title
+
+.container
+  .row
+    #article_list.col-sm-12.col-xs-12
+      .split
+      - if @card
+        .row
+          .col-sm-4.col-xs-4
+            %a{href: "/yys/card/#{@card.id}/"}
+              %img.img-responsive{src: "#{@card.img_url}"}
+          .col-sm-8.col-xs-8
+            %p.title
+              %a{href: "/yys/card/#{@card.id}/"} 
+                #{@card.name}图鉴：
+                %br
+                觉醒 御魂 阵容 评价
+        .split
+      - if @yuhun
+        .row
+          .col-sm-4.col-xs-4
+            %img.img-responsive.center-block{src: "#{@yuhun.img_url}"}
+          .col-sm-8.col-xs-8
+            %p.title
+              御魂：#{@yuhun.name}
+              %br
+              套装：#{@yuhun.type_1} - #{@yuhun.type_2}
+          .col-sm-12.col-xs-12
+            %p{style: "padding: 10px 0 0 10px"}
+              两件套效果：#{@yuhun.xiaoguo_1}
+              %br
+              四件套效果：#{@yuhun.xiaoguo_2}
+              %br
+              推荐：#{@yuhun.tuijian}
+              %br
+              掉落：#{@yuhun.diaoluo}
+        .split
+      = render partial: "article_list", locals: {articles: @articles}

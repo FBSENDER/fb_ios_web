@@ -1,0 +1,11 @@
+- title @title
+- ui_title = URI.encode('式神图鉴')
+
+.container
+  .row{style: "margin-top:20px"}
+    - @cards.each_with_index do |card, index|
+      .col-sm-6.col-xs-6.col-md-3
+        %a{href: "/yys/card/#{card.id}/"}
+          %img.img-rounded.img-responsive.center-block{src: "#{card.img_url}", style: "height:177px"}
+        %p.text-center{style:"height: 16px; overflow: hidden"}
+          %a{href: "/yys/card/#{card.id}/"} #{card.name}

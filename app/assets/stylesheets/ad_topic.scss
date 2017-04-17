@@ -1,0 +1,72 @@
+.hot-topic-area{
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  .hot-topic{
+    background-color: #fff;
+    overflow: hidden;
+  }
+}
+.hot-topic-item{
+  padding: 20px;
+  border-bottom: 1px solid #f4f4f4;
+  .ht-cover{
+    float: left;
+    width: 105px;
+    height: 105px;
+    background: #f4f4f4 center no-repeat;
+    background-size: cover;
+  }
+  .ht-info{
+    padding-left: 125px;
+    height: 105px;
+    .ht-title{
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+      text-align: center;
+      max-height: 48px;
+      overflow: hidden;
+      margin: 0;
+    }
+    .ht-stat{
+      font-size: 12px;
+      line-height: 14px;
+      color: #999;
+      text-align: center;
+      padding-top: 5px;
+    }
+    .ht-cut{
+      height: 2px;
+      width: 20px;
+      background-color: #eee;
+      margin: 9px auto 0;
+    }
+    .ht-user{
+      font-size: 12px;
+      color: #bfbfbf;
+      text-align: center;
+      line-height: 20px;
+      height: 20px;
+      padding-top: 7px;
+      .ht-avatar{
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        border-radius: 20px;
+        background: #f4f4f4 center no-repeat;
+        background-size: cover;
+        margin: -2px 5px 0 0;
+        vertical-align: middle;
+      }
+    }
+    .ht-v-cut{
+      display: inline-block;
+      height: 8px;
+      width: 1px;
+      background-color: #d8d8d8;
+      margin: 0 5px;
+    }
+  }
+}
+

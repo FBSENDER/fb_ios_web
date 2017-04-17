@@ -1,0 +1,107 @@
+- title "#{@card.name}图鉴"
+
+.container
+  .row
+    .col-sm-12.col-xs-12
+      %h2.title.page-header #{@card.name}基础信息
+      %p.content
+        %span.label.label-info.pull-right.tag-label
+          %a{href: "/yys/tag/#{URI.encode(@card.name)}/}",style: "color:white"} #{@card.name}
+      %img.center-block.img-responsive{src: "#{@card.img_url}"}
+      .split
+      %table.table.table-striped
+        %tr
+          %td 稀有度
+          %td #{@card.level}
+        %tr
+          %td 式神定位
+          %td #{@card.role}
+        %tr
+          %td 斗技指数
+          %td #{@card.douji}
+        %tr
+          %td 刷图指数
+          %td #{@card.shuatu}
+        %tr
+          %td 声优CV
+          %td #{@card.cv}
+        
+      .col-sm-12.col-xs-12
+        %h2.title.page-header #{@card.name}觉醒信息
+        %p
+          %strong 属性增长：
+        %table.table.table-striped
+          %tbody
+            - @juexing["base"].each do |tr|
+              %tr
+                - tr.each do |td|
+                  %td #{td}
+        %p 
+          %strong 觉醒所需材料：
+        %table.table.table-striped
+          %tbody
+            - @juexing["material"].each do |tr|
+              %tr
+                - tr.each do |td|
+                  %td #{td}
+        %p
+          %strong 觉醒技能：
+          %strong #{@juexing["skill"]}
+      .col-sm-12.col-xs-12
+        %h2.title.page-header #{@card.name}技能
+      - @skill.each_with_index do |skill, index|
+        .col-md-4.col-sm-12.col-xs-12
+          %p.alert.alert-info
+            %strong 技能#{index + 1}：#{skill[0]}
+            %br
+            %strong 消耗：#{skill[1]}
+            %br
+            %strong 效果：
+            #{skill[2]}
+            %br
+            %strong 成长性：
+            #{skill[3]}
+      .col-sm-12.col-xs-12
+        %h2.title.page-header #{@card.name}阵容推荐
+        - @team.each_with_index do |team, index|
+          %p.content
+            - if @team.size > 1
+              %strong 阵容#{index + 1}：
+          - team.each do |content|
+            - if content["type"] == 2 
+              %p.content #{content["text_content"]}
+            - elsif content["type"] == 1
+              .row{style: "margin-bottom: 15px"}
+                .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
+                  %img.img-responsive.center-block{src: "#{content["image_url"]}", alt: "#{content['image_desc']}", style: "width: 100%"}
+      .col-sm-12.col-xs-12
+        %h2.title.page-header #{@card.name}御魂搭配
+        - @suit.each_with_index do |suit, index|
+          %p.content
+            - if @suit.size > 1
+              %strong 御魂搭配#{index + 1}：
+          - suit.each do |content|
+            - if content["type"] == 2 
+              %p.content #{content["text_content"]}
+            - elsif content["type"] == 1
+              .row{style: "margin-bottom: 15px"}
+                .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
+                  %img.img-responsive.center-block{src: "#{content["image_url"]}", alt: "#{content['image_desc']}"}
+      .col-sm-12.col-xs-12
+        %h2.title.page-header #{@card.name}评价
+        %p.content #{@card.comments}
+        .page-header
+        %p.content
+          %span.label.label-info.pull-right.tag-label
+            %a{href: "/yys/tag/#{URI.encode(@card.name)}/}",style: "color:white"} #{@card.name}
+        %p.content
+          - if @next
+            %a{href: "/yys/card/#{@next.id}/?isFirst=0", title: "#{@next.name}"} 下一个式神：#{@next.name}
+            %br
+          - if @pre
+            %a{href: "/yys/card/#{@pre.id}/?isFirst=0", title: "#{@pre.name}"} 上一个式神：#{@pre.name}
+        .split
+        = render partial: "yys/footer_yindaopinglun"
+  - if @show_pinglun_ad
+    #pinglun_ad
+  #chaping_ad

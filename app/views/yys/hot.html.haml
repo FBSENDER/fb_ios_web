@@ -1,0 +1,22 @@
+- title "攻略搜索"
+
+.container
+  .row
+    .col-sm12.col-xs-12
+      %p.content
+        - @tags.each_with_index do |tag, index|
+          %span.label.label-info.tag-label
+            %a{href: "/yys/tag/#{URI.encode(tag)}/"} #{tag}
+          -if index % 5 == 4
+            %br
+
+    .col-sm-12.col-xs-12{style: "margin-top:20px"}
+      .form-inline
+        .form-group
+          %input.form-control{type: "text", id: "keyword", placeholder: "搜索攻略"}
+        %button.btn.btn-default.pull-right{onclick: "yys_search();"} Go
+
+      - if params[:message]
+        %p.alert.alert-info.text-center#message{style: "margin-top:60px"} #{params[:message]}
+      - else
+        %p.alert.alert-info.hide.text-center#message{style: "margin-top:60px"}
