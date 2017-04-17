@@ -12,4 +12,5 @@ COPY . /usr/src/app
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 RUN bundle install
+RUN bundle exec rake assets:precompile
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
