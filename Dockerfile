@@ -12,4 +12,4 @@ COPY . /usr/src/app
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 RUN bundle install
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-d"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
