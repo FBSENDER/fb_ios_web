@@ -6,7 +6,7 @@
       %h2.title.page-header #{@card.name}基础信息
       %p.content
         %span.label.label-info.pull-right.tag-label
-          %a{href: "/yys/tag/#{URI.encode(@card.name)}/}",style: "color:white"} #{@card.name}
+          %a{href: "/yys/tag/#{URI.encode(@card.name)}/",style: "color:white"} #{@card.name}
       %img.center-block.img-responsive{src: "#{@card.img_url}"}
       .split
       %table.table.table-striped
