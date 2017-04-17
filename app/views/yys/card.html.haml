@@ -93,7 +93,7 @@
         .page-header
         %p.content
           %span.label.label-info.pull-right.tag-label
-            %a{href: "/yys/tag/#{URI.encode(@card.name)}/}",style: "color:white"} #{@card.name}
+            %a{href: "/yys/tag/#{URI.encode(@card.name)}/",style: "color:white"} #{@card.name}
         %p.content
           - if @next
             %a{href: "/yys/card/#{@next.id}/?isFirst=0", title: "#{@next.name}"} 下一个式神：#{@next.name}

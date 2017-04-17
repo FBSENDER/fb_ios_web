@@ -10,7 +10,7 @@
           %p.content.text-right
             - @article.tags.split(',').each do |t|
               %span.label.label-info.tag-label
-                %a{href: "/app/tag/#{URI.encode(t)}/?ui_title=#{URI.encode(t)}",style: "color:white"} #{t}
+                %a{href: "/yys/tag/#{URI.encode(t)}/",style: "color:white"} #{t}
           .split
         - elsif content["type"] == 12
           %h4.page-header #{content["h2_content"]}
@@ -44,7 +44,7 @@
         - elsif content["type"] == 1
           .row{style: "margin-bottom: 15px"}
             .col-sm-12.col-xs-12
-              %img.img-responsive.center-block{src: "http://www.yysssr.com/proxy/#{URI.encode(content["image_url"].gsub('http://',''))}", alt: "#{content['image_desc']}", style: "width: 90%"}
+              %img.img-responsive.center-block{src: "#{content["image_url"]}", alt: "#{content['image_desc']}", style: "width: 90%"}
               - unless content['image_desc'].empty?
                 %br
                 %p.small.text-center 
@@ -54,13 +54,13 @@
       %p.content
         - @article.tags.split(',').each do |t|
           %span.label.label-info.pull-right.tag-label
-            %a{href: "/app/tag/#{URI.encode(t)}/?ui_title=#{URI.encode(t)}",style: "color:white"} #{t}
+            %a{href: "/yys/tag/#{URI.encode(t)}/",style: "color:white"} #{t}
       %p.content
         - if @pre
-          %a{href: "/app/article/#{@pre.id}/?isFirst=0"} 上一篇：#{@pre.title}
+          %a{href: "/yys/article/#{@pre.id}/?isFirst=0"} 上一篇：#{@pre.title}
           %br
         - if @next 
-          %a{href: "/app/article/#{@next.id}/?isFirst=0"} 下一篇：#{@next.title}
+          %a{href: "/yys/article/#{@next.id}/?isFirst=0"} 下一篇：#{@next.title}
       .split
       = render partial: "yys/footer_yindaopinglun"
   - if @show_pinglun_ad
