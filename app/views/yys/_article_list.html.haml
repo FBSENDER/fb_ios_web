@@ -7,7 +7,7 @@
       %small
         - article.tags.split(',').each do |tag|
           %span.label.label-info.tag-label
-            %a{href: "/yys/tag/#{URI.encode(tag)}/}"} #{tag}
+            %a{href: "/yys/tag/#{URI.encode(tag)}/"} #{tag}
         - if article.category_id == 4
           %span.label.label-success.tag-label
             %a{href: "/yys/article_shipin/"} 视频
