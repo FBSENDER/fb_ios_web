@@ -20,6 +20,16 @@ Rails.application.routes.draw do
   get "/yys/download", to: "app#download"
   get "/yys/config_info", to: "app#config_info"
 
+  #gmdl
+  get "/gmdl/article/:id", to: "gmdl#article", id: /\d+/
+  get "/gmdl/source/:id", to: "gmdl#source"
+  get "/gmdl/article_list/:category_id", to: "gmdl#article_list", category_id: /\d+/
+  get "/gmdl/tag/:name", to: "gmdl#tag"
+  get "/gmdl/zhiye/", to: "gmdl#zhiye"
+  get "/gmdl/collect/:ids", to: "gmdl#collect"
+  get "/gmdl/hot", to: "gmdl#hot"
+  get "/gmdl/search/:keyword", to: "gmdl#search"
+
   #flash
   get '/ssnode/users/' => 'flash#users'
   post '/ssnode/traffic_cost' => 'flash#traffic_cost'

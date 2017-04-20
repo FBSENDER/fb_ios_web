@@ -1,0 +1,27 @@
+- title @title
+
+.container
+  .split
+  - @zhiyes.each do |zhiye|
+    %a{href: "/gmdl/tag/#{URI.encode(zhiye.name)}/", style: "color: black"}
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          %p.title.text-center #{zhiye.name}介绍
+        .col-md-6.col-sm-6.col-xs-6.text-right
+          %img.img-rounded{src: "#{zhiye.img_url}", style: "height:190px"}
+        .col-md-6.col-sm-6.col-xs-6
+          %p.desc
+            定位：#{zhiye.dingwei}
+            %br
+            特长：#{zhiye.techang}
+            %br
+            防御：#{zhiye.fangyu}
+            %br
+            输出：#{zhiye.shuchu}
+            %br
+            辅助：#{zhiye.fuzhu}
+            %br
+            副本：#{zhiye.fuben}
+            %br
+            PK：#{zhiye.pk}
+    .split
