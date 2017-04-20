@@ -1,6 +1,5 @@
 require 'yys'
 class YysController < ApplicationController
-  layout "app_layout"
   @@hot_topics = []
 
   def ali_search

@@ -1,7 +1,6 @@
 require 'ssflash'
 class FlashController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:users, :traffic_cost, :ipn_notify,:user_cstring]
-  layout "flash_layout"
 
   def is_user_validity?
     is_inapp? && app_uuid == params[:uuid]
