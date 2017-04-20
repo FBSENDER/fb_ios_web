@@ -1,0 +1,47 @@
+- title("流量加油包购买")
+
+.container
+  .row
+    .col-sm-12.col-xs-12.col-md-12
+      %h4.page-header.text-center 流量加油包
+      .alert.alert-info
+        - @products.each do |product|
+          .radio
+            %label
+              %input{type: "radio", name: "traffic_product", id: "traffic_product#{product.id}", value: "#{product.id}|#{product.description}|#{product.price}|#{@user.id}|#{product.name}", onclick: "populate(this.value)"}
+              #{product.description} —— $ #{product.price}
+      .alert.alert-warning
+        %p.content
+          %small 付款方式：
+          PayPal USD
+          %small
+            shichapie@gmail.com
+          %br
+          %small
+            RMB 支付请联系
+            %a{href: "https://shichapie.com", target: "_blank"}技术支持
+            ，价格依据当前汇率
+        .split
+        %p#purchase_option.content 请选择加油包
+
+
+        %form{action: "https://www.paypal.com/cgi-bin/webscr", method: "get", target: "_blank"}
+          %input{name: "cmd", value: "_xclick", type: "hidden"}
+          %input{name: "business", value: "LC54TKEZGKC6S", type: "hidden"}
+          %input{name: "lc", value: "US", type: "hidden"}
+          %input{id: "item_name", name: "item_name", value: "Shichapie Jia Su Qi", type: "hidden"}
+          %input{id: "purchase_amount", name: "amount", value: "1", type: "hidden"}
+          %input{name: "currency_code", value: "USD", type: "hidden"}
+          %input{name: "button_subtype", value: "services", type: "hidden"}
+          %input{name: "tax_rate", value: "0.000", type: "hidden"}
+          %input{name: "shipping", value: "0.00", type: "hidden"}
+          %input{name: "custom", id: "purchase_custom", value: "0,0", type: "hidden"}
+          %input{name: "notify_url", value: "http://www.yysssr.com/flash/ipn_notify", type: "hidden"}
+          %input{name: "bn", value: "PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted", type: "hidden"}
+          %p.text-center
+            %input{id: "paypal_btn", name: "submit", type: "image", src: "https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif", border: "0", alt: "PayPal - The safer, easier way to pay online!"}
+            %img{src: "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", border: "0", width: "1", height: "1"}
+      %a.btn.btn-success{style: "width: 100%", data: {toggle: "collapse"}, href: "#user_uuid"} 标识码
+      #user_uuid.collapse
+        .well{style: "margin: 5px 0 50px 0"}
+          %p.text-center #{@user.default_uuid}

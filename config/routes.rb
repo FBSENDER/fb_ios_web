@@ -20,4 +20,14 @@ Rails.application.routes.draw do
   get "/yys/download", to: "app#download"
   get "/yys/config_info", to: "app#config_info"
 
+  #flash
+  get '/ssnode/users/' => 'flash#users'
+  post '/ssnode/traffic_cost' => 'flash#traffic_cost'
+
+  get "/flash/:uuid", to: "flash#user_home", uuid: /[\d\w\-]{36}/
+  get "/flash/:uuid/user_cstring", to: "flash#user_cstring", uuid: /[\d\w\-]{36}/
+  get "/flash/:uuid/check_in", to: "flash#user_check_in", uuid: /[\d\w\-]{36}/
+  get "/flash/:uuid/purchase", to: "flash#purchase", uuid: /[\d\w\-]{36}/
+  get "/flash/:uuid/traffic_log", to: "flash#traffic_log", uuid: /[\d\w\-]{36}/
+  post "/flash/ipn_notify", to: "flash#ipn_notify"
 end

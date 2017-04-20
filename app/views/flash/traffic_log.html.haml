@@ -1,0 +1,21 @@
+- title("流量消耗记录")
+
+.container
+  .row
+    .col-sm-12.col-xs-12.col-md-12
+      %h4.page-header.title.text-center 最近100条流量记录
+    - if @logs.size > 0
+      .col-sm-12.col-xs-12.col-md-12{style: "padding:0"}
+        %table.table.table-striped
+          %tr
+            %td.text-center #
+            %td.text-center 流量消耗
+            %td.text-center 时间
+          - @logs.each_with_index do |log, index|
+            %tr
+              %td.text-center #{index + 1}
+              %td.text-center #{traffic_desc(log.traffic_cost)}
+              %td.text-center #{Time.at(log.log_time).strftime('%Y-%m-%d  %H:%M')}
+    - else
+      .col-sm-12.col-xs-12.col-md-12
+        %p.content 还没有流量记录哦~
