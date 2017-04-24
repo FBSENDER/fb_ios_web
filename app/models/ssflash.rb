@@ -55,23 +55,6 @@ end
 class FPiaMessage < ActiveRecord::Base
   self.table_name = 'flash_pia_messages'
   def is_verified?
-    url_product = "https://buy.itunes.apple.com/verifyReceipt"
-    url_sandbox = "https://sandbox.itunes.apple.com/verifyReceipt"
-    params = {}
-    params['receipt-data'] = self.message
-    if self.is_sandbox == 1
-      url = url_sandbox
-    else
-      url = url_product
-    end
-    uri = URI(url)
-    req = Net::HTTP::Post.new(uri)
-    req.body = URI.encode_www_form(params)
-    req.content_type = 'text/html; charset=utf-8'
-    res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-        http.request(req)
-    end
-    p res.body
-    res.body == 'VERIFIED'
+    self.message.size == 24 && self.message.chars.map{|i| i.ord}.inject{|r,i| r+=i} % 13 == self.check_field
   end
 end

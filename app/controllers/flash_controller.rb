@@ -95,10 +95,10 @@ class FlashController < ApplicationController
 
   # pia
   def purchase_in_app
-    #unless is_user_validity?
-    #  render :nothing => true, :status => 403
-    #  return
-    #end
+    unless is_user_validity?
+      render :nothing => true, :status => 403
+      return
+    end
     @user = FUser.where(default_uuid: params[:uuid]).take
     not_found if @user.nil?
     @products = FInappProduct.where(status: 1).to_a
@@ -124,6 +124,8 @@ class FlashController < ApplicationController
     message.user_id = @user.id
     message.ios_product_id = params[:ios_product_id].to_s
     message.is_sandbox = params[:is_sandbox].to_i
+    message.message = params[:message]
+    message.check_field = params[:check].to_i
     message.status = 0
     message.save
     if message.is_verified?
@@ -132,6 +134,8 @@ class FlashController < ApplicationController
       message.save
     else
       render json: {status: 0}
+      message.status = -1
+      message.save
     end
   end
 
