@@ -95,6 +95,16 @@ class FlashController < ApplicationController
 
   # pia
   def purchase_in_app
+    #unless is_user_validity?
+    #  render :nothing => true, :status => 403
+    #  return
+    #end
+    @user = FUser.where(default_uuid: params[:uuid]).take
+    not_found if @user.nil?
+    @products = FInappProduct.where(status: 1).to_a
+  end
+
+  def pia_notify
     unless is_user_validity?
       render :nothing => true, :status => 403
       return
