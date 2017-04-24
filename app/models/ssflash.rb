@@ -55,6 +55,6 @@ end
 class FPiaMessage < ActiveRecord::Base
   self.table_name = 'flash_pia_messages'
   def is_verified?
-    self.receipt.size == 24 && (self.receipt.chars.map{|i| i.ord}.inject{|r,i| r+=i} + self.transaction_id) % 13 == self.check_field
+    self.receipt.size == 24 && (self.receipt.chars.map{|i| i.ord}.inject{|r,i| r+=i} + self.transaction_id.to_i) % 13 == self.check_field
   end
 end

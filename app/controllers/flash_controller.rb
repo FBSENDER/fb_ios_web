@@ -111,7 +111,7 @@ class FlashController < ApplicationController
     end
     @user = FUser.where(default_uuid: params[:uuid]).take
     not_found if @user.nil?
-    @message = FPiaMessage.where(transaction_id: params[:transaction_id].to_i).take
+    @message = FPiaMessage.where(transaction_id: params[:transaction_id]).take
     if @message
       if [0,1,2].include?(@message.status)
         render json: {status: 1}
@@ -126,7 +126,7 @@ class FlashController < ApplicationController
     message.is_sandbox = params[:is_sandbox].to_i
     message.receipt = params[:message]
     message.check_field = params[:check].to_i
-    message.transaction_id = params[:transaction_id].to_i
+    message.transaction_id = params[:transaction_id]
     message.status = 0
     message.save
     if message.is_verified?
