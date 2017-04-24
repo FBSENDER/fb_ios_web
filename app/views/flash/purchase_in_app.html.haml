@@ -1,0 +1,25 @@
+- title("流量加油包购买")
+
+.container#pia
+  .row
+    .col-sm-12.col-xs-12.col-md-12
+      %h4.page-header.text-center 流量加油包
+      .alert.alert-info
+        - @products.each_with_index do |product, index|
+          .radio
+            %label
+              - if index == 0
+                %input{type: "radio", name: "traffic_product", id: "traffic_product#{product.id}", value: "#{product.ios_product_id}", checked: "checked"}
+              - else
+                %input{type: "radio", name: "traffic_product", id: "traffic_product#{product.id}", value: "#{product.ios_product_id}"}
+              #{product.title} —— ￥ #{product.price}
+      %button.btn.btn-primary{style: "width: 100%;margin-bottom:20px", onclick: "purchase_in_app()"} 购买
+      .alert.alert-warning
+        %p.content
+          支付成功后，1 - 2 分钟流量会到账，遇到问题，请联系技术支持，附下面的标识码
+
+      %a.btn.btn-success{style: "width: 100%", data: {toggle: "collapse"}, href: "#user_uuid"} 标识码（点击展示）
+      #user_uuid.collapse
+        .well{style: "margin: 5px 0 50px 0"}
+          %p.text-center #{@user.default_uuid}
+      %div{style: "height: 50px"}

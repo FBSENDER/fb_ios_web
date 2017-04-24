@@ -93,6 +93,18 @@ class FlashController < ApplicationController
     @products = FProduct.where(status: 1).order(:id)
   end
 
+  # pia
+  def purchase_in_app
+    unless is_user_validity?
+      render :nothing => true, :status => 403
+      return
+    end
+    @user = FUser.where(default_uuid: params[:uuid]).take
+    not_found if @user.nil?
+    active_user(@user)
+    @products = FInappProduct.where(status: 1).order(:id)
+  end
+
   # 流量消耗记录
   def traffic_log
     unless is_user_validity?

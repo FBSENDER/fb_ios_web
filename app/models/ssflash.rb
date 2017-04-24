@@ -13,6 +13,11 @@ end
 class FProduct < ActiveRecord::Base
   self.table_name = 'flash_traffic_products'
 end
+
+class FInappProduct < ActiveRecord::Base
+  self.table_name = 'flash_inapp_traffic_products'
+end
+
 class FActivePort < ActiveRecord::Base
   self.table_name = 'flash_active_ports'
 end
