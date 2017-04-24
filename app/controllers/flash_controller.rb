@@ -105,13 +105,13 @@ class FlashController < ApplicationController
   end
 
   def pia_notify
-    unless is_user_validity?
-      render :nothing => true, :status => 403
-      return
-    end
+    #unless is_user_validity?
+    #  render :nothing => true, :status => 403
+    #  return
+    #end
     @user = FUser.where(default_uuid: params[:uuid]).take
     not_found if @user.nil?
-    @message = FPiaMessage.where(message: params[:message]).take
+    @message = FPiaMessage.where(receipt: params[:message]).take
     if @message
       if [0,1,2].include?(@message.status)
         render json: {status: 1}
@@ -124,7 +124,7 @@ class FlashController < ApplicationController
     message.user_id = @user.id
     message.ios_product_id = params[:ios_product_id].to_s
     message.is_sandbox = params[:is_sandbox].to_i
-    message.message = params[:message]
+    message.receipt = params[:message]
     message.check_field = params[:check].to_i
     message.status = 0
     message.save
