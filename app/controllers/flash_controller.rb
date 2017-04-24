@@ -1,6 +1,6 @@
 require 'ssflash'
 class FlashController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:users, :traffic_cost, :ipn_notify,:user_cstring]
+  skip_before_action :verify_authenticity_token, :only => [:users, :traffic_cost, :ipn_notify,:user_cstring, :pia_notify]
 
   def is_user_validity?
     is_inapp? && app_uuid == params[:uuid]
@@ -101,8 +101,28 @@ class FlashController < ApplicationController
     end
     @user = FUser.where(default_uuid: params[:uuid]).take
     not_found if @user.nil?
-    active_user(@user)
-    @products = FInappProduct.where(status: 1).order(:id)
+    @message = FPiaMessage.where(message: params[:message]).take
+    if @message
+      if [0,1,2].include?(@message.status)
+        render json: {status: 1}
+      else
+        render json: {status: 0}
+      end
+      return
+    end
+    message = FPiaMessage.new
+    message.user_id = @user.id
+    message.ios_product_id = params[:ios_product_id].to_s
+    message.is_sandbox = params[:is_sandbox].to_i
+    message.status = 0
+    message.save
+    if message.is_verified?
+      render json: {status: 1}
+      message.status = 1
+      message.save
+    else
+      render json: {status: 0}
+    end
   end
 
   # 流量消耗记录

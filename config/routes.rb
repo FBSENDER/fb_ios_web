@@ -42,4 +42,5 @@ Rails.application.routes.draw do
   get "/flash/:uuid/purchase_in_app_log", to: "flash#purchase_in_app_log", uuid: /[\d\w\-]{36}/
   get "/flash/:uuid/traffic_log", to: "flash#traffic_log", uuid: /[\d\w\-]{36}/
   post "/flash/ipn_notify", to: "flash#ipn_notify"
+  post "/flash/:uuid/pia_notify", to: "flash#pia_notify"
 end
