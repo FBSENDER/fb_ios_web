@@ -104,6 +104,17 @@ class FlashController < ApplicationController
     @products = FInappProduct.where(status: 1).to_a
   end
 
+  def purchase_in_app_log
+    unless is_user_validity?
+      render :nothing => true, :status => 403
+      return
+    end
+    @user = FUser.where(default_uuid: params[:uuid]).take
+    not_found if @user.nil?
+    @logs = FPiaMessage.where(user_id: @user.id, status: [0,1,2]).order("id desc")
+    @products = FInappProduct.where(status: 1).pluck(:title,:price,:ios_product_id)
+  end
+
   def pia_notify
     unless is_user_validity?
       render :nothing => true, :status => 403

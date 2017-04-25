@@ -17,6 +17,8 @@
       .alert.alert-warning
         %p.content
           支付成功后，1 - 2 分钟流量会到账，遇到问题，请联系技术支持，附下面的标识码
+          %br
+          %a{href: "/flash/#{@user.default_uuid}/purchase_in_app_log/"} 购买记录
 
       %a.btn.btn-success{style: "width: 100%", data: {toggle: "collapse"}, href: "#user_uuid"} 标识码（点击展示）
       #user_uuid.collapse

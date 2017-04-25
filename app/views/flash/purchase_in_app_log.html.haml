@@ -1,0 +1,25 @@
+- title("购买记录")
+
+.container
+  .row
+    .col-sm-12.col-xs-12.col-md-12
+      %h4.page-header.title.text-center 购买记录
+    - if @logs.size > 0
+      .col-sm-12.col-xs-12.col-md-12{style: "padding:0"}
+        %table.table.table-striped
+          %tr
+            %td.text-center #
+            %td.text-center 流量包
+            %td.text-center 价格
+            %td.text-center 购买时间
+          - @logs.each_with_index do |log, index|
+            - @products.each do |product|
+              - next if product[2] != log.ios_product_id
+              %tr
+                %td.text-center #{index + 1}
+                %td.text-center #{product[0]}
+                %td.text-center #{product[1]}元
+                %td.text-center #{Time.at(log.created_at).strftime('%Y-%m-%d  %H:%M')}
+    - else
+      .col-sm-12.col-xs-12.col-md-12
+        %p.content 还没有购买记录哦~
