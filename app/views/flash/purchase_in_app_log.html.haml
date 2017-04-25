@@ -19,7 +19,7 @@
                 %td.text-center #{index + 1}
                 %td.text-center #{product[0]}
                 %td.text-center #{product[1]}元
-                %td.text-center #{Time.at(log.created_at).strftime('%Y-%m-%d  %H:%M')}
+                %td.text-center #{Time.at(log.created_at + 8*3600).strftime('%Y-%m-%d  %H:%M')}
     - else
       .col-sm-12.col-xs-12.col-md-12
         %p.content 还没有购买记录哦~
