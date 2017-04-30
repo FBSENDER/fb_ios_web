@@ -18,7 +18,6 @@ $(document).on("turbolinks:load", function(){
     $("img.lazy").lazyload({threshold: 200, effect: "fadeIn"});
   }
   pinglun();
-  google_chaping_ads();
   if($("#need_taobao_convert_url").length > 0){
     taodianjin(window,document);
   }

@@ -9,6 +9,22 @@ class WzryController < ApplicationController
   @@huya_zhibo = [nil,nil,nil,nil,nil]
 
   def ali_search
+    @keyword = params[:keyword].strip
+    @articles = WzryArticle.where("title like ? and status = 1", "%#{@keyword}%").select(:id,:title,:tags,:img_url,:description,:category_id).order("source_id desc").paginate(page: params[:page])
+    if @articles.nil? || @articles.size.zero? && params[:page].nil?
+      redirect_to "#{URI.encode("/wzry/hot?message=没有找到...")}"
+      return
+    end
+    @path = request.fullpath
+    @is_ipad = is_ipad?
+    if request.xhr?
+      render partial: "article_list", locals: {articles: @articles}
+      return 
+    end
+    render "article_list"
+  end
+
+  def ali_search_original
     data = do_ali_search(params[:keyword], "wzry_app")
     if data["status"] != 'OK'
       redirect_to "#{URI.encode("/wzry/hot?message=没有找到...")}"
