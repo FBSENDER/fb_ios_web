@@ -1,4 +1,5 @@
 require 'wzry'
+require 'net/http'
 class WzryController < ApplicationController
   layout "wzry_layout"
   @@hero_list = nil
