@@ -1,0 +1,45 @@
+- articles.each_with_index do |article, index|
+  - height = @is_ipad? "150px" : "80px"
+  - if index == 3
+    .row
+      .col-md-12.col-sm-12.col-xs-12
+        .col-md-3.col-sm-3.col-xs-3
+          %a{href: "https://s.click.taobao.com/AN10nuw", target: "_blank"}
+            %img{src: 'https://gd1.alicdn.com/imgextra/i1/2450158433/TB2QojzfMFkpuFjSspnXXb4qFXa_!!2450158433.jpg_400x400.jpg', height: "60px"}
+        .col-md-9.col-sm-9.col-xs-9
+          %a{href: "https://s.click.taobao.com/XEXIVrw", target: "_blank"}
+            %p.list_title 无线蓝牙游戏手柄 - 排位必备！
+          %p.text-right
+            %small
+              %span.label.label-success.tag-label
+                %a{href: "https://s.click.taobao.com/pNUHVrw", target: "_blank"} Vinyson旗舰店
+    .split
+
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .col-md-3.col-sm-3.col-xs-3
+        %a{href: "/wzry/article/#{article.id}/", title: "#{article.title}"}
+          .article_cover{style: "background-image:url(#{article.img_url});height:#{height}"}
+      .col-md-9.col-sm-9.col-xs-9
+        %a{href: "/wzry/article/#{article.id}/", title: "#{article.title}"}
+          %p.list_title #{article.title}
+        %a{href: "/wzry/article/#{article.id}/", title: "#{article.title}"}
+          %p.desc.hidden-sm.hidden-xs{style: "color:black"} #{article.description}
+        %p.text-right
+          %small
+            - if article.category_id && article.category_id == 1
+              %span.label.label-success.tag-label 攻略
+            - elsif article.category_id && article.category_id == 2
+              %span.label.label-success.tag-label 资讯
+            - elsif article.category_id && article.category_id == 3
+              %span.label.label-success.tag-label 问答
+            - elsif article.category_id && article.category_id == 4
+              %span.label.label-warning.tag-label 视频
+            - article.tags.split(',').each do |tag|
+              %span.label.label-info.tag-label
+                %a{href: "/wzry/tag/#{URI.encode(tag)}/"} #{tag}
+
+  .split
+- unless @no_paginate
+  #scrolling.hide
+    = will_paginate(articles)

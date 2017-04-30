@@ -1,0 +1,13 @@
+- title @title
+
+.container.block-center
+  .row
+    .col-sm-12.col-xs-12.sale_search-area{style: "padding:0"}
+      .sale_search-area{style: "width:90%"}
+        .sale_inner
+          %i
+          %input#search_qq_video.sale_search-input{placeholder: "视频搜索", value: "#{@keyword if @keyword}"}
+    #video_list.video_list{style: "margin-top: 55px"}
+      - if @videos.size.zero?
+        %p.desc 哎呀，没有找到...
+      = render partial: "video_list", locals: {videos: @videos}

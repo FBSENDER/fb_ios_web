@@ -1,0 +1,20 @@
+- title(@video.title)
+%section.container
+  .row
+    %article.col-sm-12.col-xs-12
+      %h3.page-header #{@video.title}
+      %p.content.text-center
+        %a{href: "https://s.click.taobao.com/AN10nuw", target: "_blank"} 拍下有礼：蓝牙无线游戏手柄
+      %p.content #{@video.description}
+      .video.player_qq.text-center
+        %iframe{src: "https://v.qq.com/iframe/player.html?vid=#{@video.vid}&tiny=0&auto=0",allowfullscreen: true, frameborder: 0}
+      .split
+    %aside.col-sm-12.col-xs-12
+      %p.content
+        - if @pre
+          %a{href: "/wzry/qq_video/#{@pre.id}/?isFirst=0"} 上一篇：#{@pre.title}
+          %br
+        - if @next 
+          %a{href: "/wzry/qq_video/#{@next.id}/?isFirst=0"} 下一篇：#{@next.title}
+  #chaping_ad
+  = render partial: "/wzry/footer_yindaopinglun"

@@ -1,0 +1,13 @@
+- title "英雄视频"
+
+.container
+  .split
+  - @heros.each do |hero|
+    %a{href: "/wzry/tag/#{URI.encode(hero.title)}/", title: "#{hero.title}"}
+      .row
+        .col-md-4.col-sm-4.col-xs-4
+          %img.center-block{src: "#{hero.img_url}",style: "height:100px"}
+        .col-md-8.col-sm-8.col-xs-8
+          %p.list_title 王者荣耀 - #{hero.title}
+          %p.desc{style: "color:black"} 视频 - #{hero.source_ids.split(',').size}个
+      .split

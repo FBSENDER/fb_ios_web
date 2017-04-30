@@ -1,0 +1,65 @@
+- title(@article.title)
+- is_turbolinks_cache?(!@contents.any?{|item| item["type"] == 88})
+
+%section.container
+  .row
+    %article.col-sm-12.col-xs-12
+      - @contents.each_with_index do |content,index|
+        - if content["type"] == 11
+          %h3.page-header #{content["h1_content"]}
+          %p.content.text-center
+            %a{href: "https://s.click.taobao.com/XEXIVrw", target: "_blank"} 拍下有礼：蓝牙无线游戏手柄
+        - elsif content["type"] == 2
+          %p.content #{content["text_content"]}
+        - elsif content["type"] == 87
+          .video.player_qq.text-center
+            %iframe{src: "#{content['src']}",allowfullscreen: true, frameborder: 0}
+          .split
+        - elsif content["type"] == 88
+          .video.player_yk{id: "player_#{index}", data:{vid: "#{content['vid']}"}}
+          .split
+        - elsif content["type"] == 89
+          .video.player_163{id: "player_#{index}", data:{src: "#{content['src']}"}}
+          .split
+        - elsif content["type"] == 20
+          %table.table.table-striped
+            %thead
+              %tr
+                - content["table_content"][0].each do |data|
+                  %th #{data}
+            %tbody
+              - content["table_content"][1..-1].each do |row|
+                %tr
+                  - row.each do |data|
+                    %td #{data}
+        - elsif content["type"] == 1
+          .row{style: "margin-bottom: 15px"}
+            .col-sm-12.col-xs-12
+              %img.img-responsive.center-block{src: "#{content["image_url"]}", alt: "#{content['image_desc']}"}
+              - unless content['image_desc'].empty?
+                %br
+                %p.small.text-center 
+                  %span.glyphicon.glyphicon-minus
+                  #{content['image_desc']}
+        - elsif content["type"] == 13
+          %p.content
+            %a{href: "#{content['url']}"} #{content['anchor']}
+        - elsif content["type"] == 22
+          %p.content
+            - content["content"].each do |c|
+              - if c["type"] == 2
+                #{c['text_content']}
+              - elsif c["type"] == 13
+                %a{href: "#{c['url']}"} #{c['anchor']}
+    %aside.col-sm-12.col-xs-12
+      %p.content
+        - if @pre
+          %a{href: "/wzry/article/#{@pre.id}/?isFirst=0"} 上一篇：#{@pre.title}
+          %br
+        - if @next 
+          %a{href: "/wzry/article/#{@next.id}/?isFirst=0"} 下一篇：#{@next.title}
+      - if @show_pinglun_ad
+        #pinglun_ad
+      .split
+  #chaping_ad
+  = render partial: "/wzry/footer_yindaopinglun"

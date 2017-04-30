@@ -264,6 +264,7 @@ class FlashController < ApplicationController
     user.ios_uuid = ''
     user.port = 4199
     user.passwd = gen_random_pass
+    user.youhuima = gen_random_pass
     user.t = 0
     user.u = 0
     user.d = 0

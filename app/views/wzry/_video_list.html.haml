@@ -1,0 +1,20 @@
+- videos.each do |video|
+  .col-md-3.col-sm-6.col-xs-6{style: "padding:0"}
+    %div{style: "margin: 0 3px 0 3px;padding:0"}
+      %a{href: "/wzry/qq_video/#{video.id}/"}
+        %img.lazy.img-rounded{src: "/default.jpeg", data: {original: "#{video.img_url}"}, style: "width:100%"}
+        .vmask
+          %span.view
+            %i
+            - if video.views <= 10000
+              #{video.views}
+            - else
+              = "#{(video.views * 1.0 / 10000).round(1)}万"
+          %time
+            = " - #{video.published_at.strftime("%m/%d")}"
+
+      %p.video_title #{video.title}
+
+- unless @no_paginate
+  #scrolling.hide
+    = will_paginate(videos)

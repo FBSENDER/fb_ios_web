@@ -30,6 +30,29 @@ Rails.application.routes.draw do
   get "/gmdl/hot", to: "gmdl#hot"
   get "/gmdl/search/:keyword", to: "gmdl#search"
 
+  #wzry
+  get "/wzry/article/:id", to: "wzry#article", id: /\d+/
+  get "/wzry/source/:id", to: "wzry#source", id: /\d+/
+  get "/wzry/article_list/:category_id", to: "wzry#article_list", category_id: /\d+/
+  get "/wzry/tag/:name", to: "wzry#tag"
+  get "/wzry/hero_list", to: "wzry#hero_list"
+  get "/wzry/ali_search/:keyword", to: "wzry#ali_search"
+  get "/wzry/hot", to: "wzry#hot"
+  get "/wzry/collect/:ids", to: "wzry#collect"
+  get "/wzry/qq_video/", to: "wzry#qq_video_list"
+  get "/wzry/qq_video/:id", to: "wzry#qq_video_detail"
+  get "/wzry/qq_video_collect/:ids", to: "wzry#qq_video_collect"
+  get "/wzry/qq_video_search/:keyword", to: "wzry#qq_video_search"
+  get "/wzry/zhibo/huya/:id", to: "wzry#huya_detail"
+  get "/wzry/zhibo/huya_list/:id", to: "wzry#huya_list"
+
+  get "/wzry/hero/:id.html", to: "wzry#hero_source", id: /\d+/
+  get "/wzrydb/hero_list", to: "wzry#db_hero_list"
+  get "/wzrydb/hero/:id", to: "wzry#db_hero"
+  get "/wzrydb/equip_list", to: "wzry#db_equip_list"
+  get "/wzrydb/equip/:id", to: "wzry#db_equip"
+  get "/wzrydb/rune_list", to: "wzry#db_rune_list"
+
   #flash
   get '/ssnode/users/' => 'flash#users'
   post '/ssnode/traffic_cost' => 'flash#traffic_cost'

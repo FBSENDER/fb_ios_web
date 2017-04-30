@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>数据详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://js.18183.com/wap/levelc/2015/css/index.css"/>
+    <link rel="stylesheet" href="http://js.18183.com/common/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="http://js.18183.com/wap/yxzjol/sjk/css/style.css">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    </script>
+  </head>
+  <body>
+    <div id="nav-mod"></div>
+    <%= @list.common_style.html_safe %>
+    <%= @hero.section_1.html_safe %>
+    <%= @hero.section_2.html_safe %>
+    <%= @hero.section_3.html_safe %>
+    <%= @hero.section_4.html_safe %>
+    <%= @hero.section_5.html_safe %>
+    <%= @hero.section_6.html_safe %>
+    <%= @hero.section_7.html_safe %>
+    <%= @hero.section_8.html_safe %>
+    <%= @hero.section_9.html_safe %>
+    <%= @hero.section_10.html_safe %>
+    <%= render partial: "layouts/app_js_script"%>
+    <script type="text/javascript">
+    var db_config ={"item":{"category":{"gongji":"\u653b\u51fb","fashu":"\u6cd5\u672f","fangyu":"\u9632\u5fa1","yidong":"\u79fb\u52a8","daye":"\u6253\u91ce"},"tier":{"1":"\u5c0f\u4ef6","2":"\u4e2d\u4ef6","3":"\u5927\u4ef6"},"gj_attr":{"1":"\u7269\u7406\u653b\u51fb","2":"\u66b4\u51fb","3":"\u653b\u51fb\u901f\u5ea6","4":"\u7269\u7406\u5438\u8840","5":"\u6cd5\u672f\u653b\u51fb"},"fy_attr":{"1":"\u6700\u5927\u751f\u547d","2":"\u7269\u7406\u9632\u5fa1","3":"\u6cd5\u672f\u9632\u5fa1","4":"\u51b7\u5374\u7f29\u51cf","5":"\u79fb\u901f"},"attribute":{"attr":{"attack_damage":"\u7269\u7406\u653b\u51fb","armor_penetration":"\u7269\u7406\u62a4\u7532\u7a7f\u900f","attack_speed":"\u653b\u51fb\u901f\u5ea6","critical_strike_chance":"\u66b4\u51fb\u7387","critical_damage":"\u66b4\u51fb\u6548\u679c","life_steal":"\u7269\u7406\u5438\u8840","ability_power":"\u6cd5\u672f\u653b\u51fb","magic_penetration":"\u6cd5\u672f\u62a4\u7532\u7a7f\u900f","mana":"\u6700\u5927\u6cd5\u529b","mana_regen":"\u6bcf5\u79d2\u56de\u84dd","cooldown_reduction":"\u51b7\u5374\u7f29\u51cf","spell_vamp":"\u6cd5\u672f\u5438\u8840","health":"\u6700\u5927\u751f\u547d","armor":"\u7269\u7406\u9632\u5fa1","magic_resist":"\u6cd5\u672f\u9632\u5fa1","health_regen":"\u6bcf5\u79d2\u56de\u8840","movement_speed":"\u79fb\u901f"},"unit":{"point":"\u70b9","percent":"%"},"type":{"normal":"\u57fa\u672c\u5c5e\u6027","effect":"\u6548\u679c\u5c5e\u6027"},"unique":["\u975e\u552f\u4e00","\u552f\u4e00"]},"effect":{"type":{"unique_passive":"\u552f\u4e00\u88ab\u52a8","unique_active":"\u552f\u4e00\u4e3b\u52a8","passive":"\u88ab\u52a8"}}},"rune":{"category":{"gongji":"\u653b\u51fb","shengming":"\u751f\u547d","fangyu":"\u9632\u5fa1","gongneng":"\u529f\u80fd","xixue":"\u5438\u8840","gongsu":"\u653b\u901f","baoji":"\u66b4\u51fb","chuantou":"\u7a7f\u900f"},"attribute":{"type":{"normal":"\u901a\u7528\u5c5e\u6027","risk":"\u5192\u9669\u5c5e\u6027"}},"tier":{"1":"\u4e00\u7ea7","2":"\u4e8c\u7ea7","3":"\u4e09\u7ea7","4":"\u56db\u7ea7","5":"\u4e94\u7ea7"},"color":{"red":"\u7ea2","green":"\u7eff","blue":"\u84dd"}},"hero":{"category":{"tank":"\u5766\u514b","fighter":"\u6218\u58eb","assassin":"\u523a\u5ba2","mage":"\u6cd5\u5e08","marksman":"\u5c04\u624b","support":"\u8f85\u52a9"},"attribute":{"health":"\u6700\u5927\u751f\u547d","mana":"\u6700\u5927\u6cd5\u529b","attack_damage":"\u7269\u7406\u653b\u51fb","ability_power":"\u6cd5\u672f\u653b\u51fb","armor":"\u7269\u7406\u9632\u5fa1","armor_percent":"\u7269\u7406\u51cf\u4f24\u7387","magic_resist":"\u6cd5\u672f\u9632\u5fa1","magic_resist_percent":"\u6cd5\u672f\u51cf\u4f24\u7387","movement_speed":"\u79fb\u901f","armor_penetration":"\u7269\u7406\u62a4\u7532\u7a7f\u900f","magic_penetration":"\u6cd5\u672f\u62a4\u7532\u7a7f\u900f","attack_speed":"\u653b\u901f\u52a0\u6210","critical_strike_chance":"\u66b4\u51fb\u51e0\u7387","critical_damage":"\u66b4\u51fb\u6548\u679c","life_steal":"\u7269\u7406\u5438\u8840","spell_vamp":"\u6cd5\u672f\u5438\u8840","cooldown_reduction":"\u51b7\u5374\u7f29\u51cf","attack_range":"\u653b\u51fb\u8303\u56f4","tenacity":"\u97e7\u6027","health_regen":"\u751f\u547d\u56de\u590d","mana_regen":"\u6cd5\u529b\u56de\u590d"},"attack_range":{"near":"\u8fd1\u7a0b","far":"\u8fdc\u7a0b"},"skill":{"p":"\u88ab\u52a8\u6280\u80fd","a1":"\u4e3b\u52a8\u6280\u80fd\u4e00","a2":"\u4e3b\u52a8\u6280\u80fd\u4e8c","a3":"\u4e3b\u52a8\u6280\u80fd\u4e09"},"position":{"p1":"\u4e0a\u5355","p2":"\u4e2d\u5355","p3":"\u8f85\u52a9","p4":"\u6253\u91ce","p5":"ADC"},"attack":{"near":"\u8fd1\u6218","far":"\u8fdc\u7a0b","attack":"\u7269\u7406","magic":"\u9b54\u6cd5"},"price":{"18888":"18888","13888":"13888","8888":"8888","5888":"5888","other":"\u5176\u5b83"}}};
+    </script>
+    <script type="text/javascript" src="http://db.18183.com/api/equip"></script>
+    <script src="http://js.18183.com/common/js/jquery/jquery-2.0.2.min.js"></script>
+    <script src="http://js.18183.com/wap/levelc/2015/js/index.js"></script>
+    <script src="http://js.18183.com/common/js/naruto.js"></script>
+    <script src="http://js.18183.com/common/js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="http://js.18183.com/common/js/lazyload_wap.js"></script>
+    <script src="http://js.18183.com/wap/yxzjol/sjk/js/common.js"></script>
+  </body>
+</html>

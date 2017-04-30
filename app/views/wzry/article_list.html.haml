@@ -1,0 +1,23 @@
+- title @title
+
+.container
+  .row
+    - if @hero
+      #nav-mod
+      = @hero.section_1.html_safe
+      .col-sm-12.col-xs-12.col-md-12
+        .col-sm-3.col-xs-3.col-md-3
+          %a{href: "/wzrydb/hero/#{@hero.id}/"}
+            %img.img-responsive{src: "#{@hero.img_url}"}
+        .col-md-9.col-sm-9.col-xs-9
+          %a{href: "/wzrydb/hero/#{@hero.id}/"}
+            %p.list_title 
+              英雄数据库：#{@hero.name}
+              %br
+              %br
+              %small
+                技能加点 铭文搭配 装备模拟
+
+    #article_list.col-sm-12.col-xs-12
+      .split
+      = render partial: "article_list", locals: {articles: @articles}

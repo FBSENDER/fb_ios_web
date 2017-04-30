@@ -1,0 +1,18 @@
+- title @title
+
+.container.block-center
+  #video_list.row.video_list{style: "margin-top:15px"}
+    - @details.each do |video|
+      .col-md-3.col-sm-6.col-xs-6{style: "padding:0"}
+        %div{style: "margin: 0 3px 0 3px;padding:0"}
+          %a{href: "/wzry/zhibo/huya/#{video["yyid"] || video["privateHost"]}/"}
+            %img.lazy.img-rounded{src: "/default.jpeg", data: { original: "#{video["screenshot"]}"}, style: "width:100%"}
+            .vmask
+              %span.view
+                %i
+                - if video["totalCount"].to_i <= 10000
+                  #{video["totalCount"]}
+                - else
+                  = "#{(video["totalCount"].to_i * 1.0 / 10000).round(1)}万"
+    
+          %p.video_title #{video["introduction"]}
