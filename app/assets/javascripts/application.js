@@ -111,7 +111,7 @@ var yys_search = function(){
   if(k.trim() == ''){
     return;
   }
-  Turbolinks.visit("/app/ali_search/" + encodeURI(k) + "/?isFirst=0");
+  Turbolinks.visit("/yys/ali_search/" + encodeURI(k) + "/?isFirst=0");
 };
 
 var wzry_search = function(){

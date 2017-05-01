@@ -8,6 +8,27 @@ class YysController < ApplicationController
       redirect_to "/yys/tag/#{URI.encode(tag.name)}/"
       return 
     end
+    @keyword = params[:keyword].strip
+    @articles = Article.where("title like ? and status = 1", "%#{@keyword}%").select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    if @articles.nil? || @articles.size.zero? && params[:page].nil?
+      redirect_to "#{URI.encode("/yys/hot?message=没有找到...")}"
+      return
+    end
+    @path = request.fullpath
+    @is_ipad = is_ipad?
+    if request.xhr?
+      render partial: "article_list", locals: {articles: @articles}
+      return 
+    end
+    render "article_list"
+
+  end
+  def ali_search_old
+    tag = ArticleTag.where(name: params[:keyword]).take
+    if tag
+      redirect_to "/yys/tag/#{URI.encode(tag.name)}/"
+      return 
+    end
 
     data = do_ali_search(params[:keyword], "yysssr_app")
     if data["status"] != 'OK'
@@ -89,8 +110,6 @@ class YysController < ApplicationController
       render partial: "article_list", locals: {articles: @articles}
       return 
     end
-    render json: @articles
-    return
     render "article_list"
   end
   def article_wenda

@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   get "/wzrydb/equip/:id", to: "wzry#db_equip"
   get "/wzrydb/rune_list", to: "wzry#db_rune_list"
 
+  #common
+  get "/common/changyan", to: "common#changyan"
+
   #flash
   get '/ssnode/users/' => 'flash#users'
   post '/ssnode/traffic_cost' => 'flash#traffic_cost'
