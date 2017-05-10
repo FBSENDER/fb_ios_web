@@ -15,7 +15,7 @@
             %tr
               %td.text-center #{index + 1}
               %td.text-center #{traffic_desc(log.traffic_cost)}
-              %td.text-center #{Time.at(log.log_time).strftime('%Y-%m-%d  %H:%M')}
+              %td.text-center #{Time.at(log.log_time + 28800).strftime('%Y-%m-%d  %H:%M')}
     - else
       .col-sm-12.col-xs-12.col-md-12
         %p.content 还没有流量记录哦~
