@@ -40,7 +40,11 @@ class FlashController < ApplicationController
       render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
       return
     end
-    server_ip = FNode.where("status = 1").pluck(:server_ip).sample
+    if is_in_china?
+      server_ip = FNode.where("status = 1").pluck(:server_ip).sample
+    else
+      server_ip = "47.90.13.15"
+    end
     if server_ip.nil?
       render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
       return

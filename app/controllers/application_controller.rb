@@ -36,6 +36,16 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('NOT FOUND')
   end
 
+  def is_in_china?
+    begin
+      url = "http://ip.taobao.com/service/getIpInfo.php?ip=#{remote.ip}"
+      result = JSON.parse(Net::HTTP.get(URI(url)))
+      return result["data"]["country_id"] == "CN"
+    rescue 
+      return true
+    end
+  end
+
   def do_ali_search(keyword, app_name, index_name = 'default')
     secret = ''
     hash = {}
