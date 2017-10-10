@@ -133,15 +133,15 @@ class YysController < ApplicationController
     render "article_list"
   end
   def card_ssr
-    @cards = Card.where(level: 'ssr').select(:id,:img_url,:name)
+    @cards = Card.where(level: 'ssr').select(:id,:img_url,:name).order("id desc")
     render "card_list"
   end
   def card_sr
-    @cards = Card.where(level: 'sr').select(:id,:img_url,:name)
+    @cards = Card.where(level: 'sr').select(:id,:img_url,:name).order("id desc")
     render "card_list"
   end
   def card_r
-    @cards = Card.where(level: 'r').select(:id,:img_url,:name)
+    @cards = Card.where(level: 'r').select(:id,:img_url,:name).order("id desc")
     render "card_list"
   end
   def card
@@ -154,8 +154,8 @@ class YysController < ApplicationController
     @path = request.fullpath
     @next = Card.where("id > ?", @card.id).order("id").take
     @pre = Card.where("id < ?", @card.id).order("id desc").take
-    #@show_pinglun_ad = is_app_new? && @card.id == 62
-    @show_pinglun_ad = false
+    @show_pinglun_ad = is_app_new? && @card.id == 85
+    #@show_pinglun_ad = false
   end
   def yuhun
     @yuhuns = params[:id].to_i > 0 ? Yuhun.where(type_id: params[:id].to_i).select(:name, :img_url,:type_1, :type_2, :xiaoguo_1).order("type_1") : Yuhun.select(:name, :img_url,:type_1, :type_2, :xiaoguo_1).order("type_1")
