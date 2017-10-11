@@ -1,18 +1,18 @@
-- title("手游加速器")
+- title("国内综艺加速看")
 
 .container
   .row
     .col-sm-12.col-xs-12.col-md-12
-      %h4.page-header.text-center{style: "margin-bottom: 10px"} 手游加速器
+      %h4.page-header.text-center{style: "margin-bottom: 10px"} 国内综艺国外看
       %p.text-right
         %small
-          韩服、美服手游加速，新用户送
+          优酷、爱奇艺、AB站视频国外观看，新用户送
           %span{style: "color:red"}100M
           流量
       %p.text-right
         %small
           %span{style: "color:red"}一键加速
-          ，老司机开车带你飞
+          ，出国旅游必备APP
       %p.content.alert.alert-info{style:"padding-left:20px"} 
         剩余流量：#{traffic_desc(@user.transfer_enable - @user.d)}
         %small
@@ -20,7 +20,7 @@
       - if @is_new
         %p.content.alert.alert-warning{style:"padding-left:20px"} 
           %small
-            欢迎新司机，加速服务正在初始化，大约需要5分钟
+            欢迎新用户，加速服务正在初始化，大约需要5分钟
       - if @user.check_in_times > 0
         %p{style:"padding-left:20px"} 
           %small 签到次数：
@@ -45,7 +45,7 @@
         %small 当前活动：
         每日签到送流量 5MB - 10MB
       %p{style:"padding-left:20px"} 
-        %small 时差派游戏加速器
+        %small 爱券网 - 淘宝内部优惠券免费领
 
       %p.content.text-right{style: "padding-top:0"}
         - if @checked
@@ -54,9 +54,9 @@
           %a.btn.btn-success{href: "/flash/#{params[:uuid]}/check_in/?isFirst=0"} 立即签到
       - if @checked
         %p.content.text-right{style: "padding-top:0"}
-          %a.btn.btn-primary{href: "https://www.google.com", target: "_blank"} Google
-          %a.btn.btn-primary{href: "http://www.youtube.com", target: "_blank"} YouTube 
-          %a.btn.btn-primary{href: "http://www.twitter.com", target: "_blank"} Twitter
+          %a.btn.btn-primary{href: "http://www.youku.com", target: "_blank"} 优酷
+          %a.btn.btn-primary{href: "http://www.iqiyi.com", target: "_blank"} 爱奇艺 
+          %a.btn.btn-primary{href: "http://www.bilibili.com", target: "_blank"} bilibili
         %p.content.text-right{style: "padding-top:0"}
           %small{style: "padding-top:20px"} 访问以上网站测试加速器连通情况
       

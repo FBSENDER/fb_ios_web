@@ -51,16 +51,17 @@ class FlashController < ApplicationController
     end
     active_user(@user)
     pt = FPortUser.where(user_id: @user.id).take
+    cn = is_in_china? ? 1 : 0;
     if pt.nil?
-      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
+      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5|#{cn}"
       return
     end
     @port = FActivePort.where(port: pt.port).take
     if @port.nil?
-      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
+      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5|#{cn}"
       return
     end
-    render :plain => "server_name|#{server_ip}|#{@port.port}|#{@port.passwd}|rc4-md5"
+    render :plain => "server_name|#{server_ip}|#{@port.port}|#{@port.passwd}|rc4-md5|#{cn}"
   end
 
   #用户签到
