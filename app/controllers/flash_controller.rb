@@ -5,6 +5,14 @@ class FlashController < ApplicationController
   def is_user_validity?
     is_inapp? && app_uuid == params[:uuid]
   end
+
+  def is_in_china
+    if is_in_china?
+      render plain: "1"
+    else
+      render plain: "0"
+    end
+  end
   
   #分享页，功能介绍，微信浏览器打开，判断UA跳app store
   def tuiguang
@@ -51,17 +59,16 @@ class FlashController < ApplicationController
     end
     active_user(@user)
     pt = FPortUser.where(user_id: @user.id).take
-    cn = is_in_china? ? 1 : 0;
     if pt.nil?
-      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5|#{cn}"
+      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
       return
     end
     @port = FActivePort.where(port: pt.port).take
     if @port.nil?
-      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5|#{cn}"
+      render :plain => "server_name|127.0.0.1|3000|321321|rc4-md5"
       return
     end
-    render :plain => "server_name|#{server_ip}|#{@port.port}|#{@port.passwd}|rc4-md5|#{cn}"
+    render :plain => "server_name|#{server_ip}|#{@port.port}|#{@port.passwd}|rc4-md5"
   end
 
   #用户签到
