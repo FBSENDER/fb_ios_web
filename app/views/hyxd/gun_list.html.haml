@@ -1,0 +1,11 @@
+- title @title
+- ui_title = URI.encode('枪械一览')
+
+.container
+  .row{style: "margin-top:20px"}
+    - @guns.each_with_index do |gun, index|
+      .col-sm-6.col-xs-6.col-md-3
+        %a{href: "/hyxd/gun/#{gun.id}/"}
+          %img.img-rounded.img-responsive.center-block{src: "#{gun.small_pic}"}
+        %p.text-center{style:"height: 16px; overflow: hidden"}
+          %a{href: "/hyxd/gun/#{gun.id}/"} #{gun.name}

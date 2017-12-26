@@ -1,0 +1,18 @@
+- title(@gun.name)
+
+%section.container
+  .row
+    %article.col-sm-12.col-xs-12
+      %h3.page-header #{@gun.name}
+      .row{style: "margin-bottom: 15px"}
+        .col-sm-12.col-xs-12
+          %img.img-responsive.center-block{src: "#{@gun.big_pic}", style: "width: 90%"}
+          %br
+          %p.small.text-center 
+            %span.glyphicon.glyphicon-minus
+            #{@gun.gun_type} 伤害:#{@gun.shanghai} 射速:#{@gun.shesu} 射程:#{@gun.shecheng} 后坐力:#{@gun.houzuoli} 
+          .split
+          - @gun.description.split('|').each do |desc|
+            %p.content #{desc}
+      .split
+      = render partial: "hyxd/footer_yindaopinglun"

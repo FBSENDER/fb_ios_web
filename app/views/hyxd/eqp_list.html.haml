@@ -1,0 +1,29 @@
+- title @title
+- ui_title = URI.encode('装备一览')
+
+.container
+  .row{style: "margin-top:20px"}
+    .col-sm-12.col-xs-12
+      %p.title
+        %span.label.label-info.tag-label
+          %a{href: "/hyxd/eqp/0/?isFirst=0"} 全部
+        %span.label.label-info.tag-label 
+          %a{href: "/hyxd/eqp/1/?isFirst=0"} 载具
+        %span.label.label-info.tag-label 
+          %a{href: "/hyxd/eqp/2/?isFirst=0"} 瞄具
+        %span.label.label-info.tag-label 
+          %a{href: "/hyxd/eqp/3/?isFirst=0"} 药品
+        %span.label.label-info.tag-label 
+          %a{href: "/hyxd/eqp/4/?isFirst=0"} 配件
+        %span.label.label-info.tag-label 
+          %a{href: "/hyxd/eqp/5/?isFirst=0"} 防具
+      .split
+    - @eqps.each_with_index do |eqp, index|
+      .col-sm-4.col-xs-4.col-md-3
+        %a{href: "/hyxd/article/#{eqp.article_id}/"} 
+          %img.img-rounded.center-block{src: "#{eqp.small_pic}", style: "height: 80px"}
+        %a{href: "/hyxd/article/#{eqp.article_id}/"} 
+          %p.text-center{style: "height: 40px; overflow: hidden"}
+            #{eqp.name} 
+        .split
+= render partial: "/hyxd/footer_yindaopinglun"

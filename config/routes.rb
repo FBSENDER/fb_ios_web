@@ -20,6 +20,17 @@ Rails.application.routes.draw do
   get "/yys/download", to: "app#download"
   get "/yys/config_info", to: "app#config_info"
 
+  #hyxd
+  get "/hyxd/article_gonglve", to: "hyxd#article_gonglve"
+  get "/hyxd/article_news", to: "hyxd#article_news"
+  get "/hyxd/article_wenda", to: "hyxd#article_wenda"
+  get "/hyxd/article_shipin", to: "hyxd#article_shipin"
+  get "/hyxd/article/:id", to: "hyxd#article", id: /\d+/
+  get "/hyxd/tag/:name", to: "hyxd#tag"
+  get "/hyxd/eqp/:id", to: "hyxd#eqp_list"
+  get "/hyxd/gun_list", to: "hyxd#gun_list"
+  get "/hyxd/gun/:id", to: "hyxd#gun", id: /\d+/
+
   #gmdl
   get "/gmdl/article/:id", to: "gmdl#article", id: /\d+/
   get "/gmdl/source/:id", to: "gmdl#source"
