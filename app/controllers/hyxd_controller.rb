@@ -70,4 +70,15 @@ class HyxdController < ApplicationController
     render "article_list"
   end
 
+  def collect
+    @articles = HyxdArticle.where(status:1, id: params[:ids].split(',').map{|id| id.to_i}).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @path = request.fullpath
+    @is_ipad = is_ipad?
+    if request.xhr?
+      render partial: "article_list", locals: {articles: @articles}
+      return 
+    end
+    render "article_list"
+  end
+
 end

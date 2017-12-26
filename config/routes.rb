@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "/hyxd/eqp/:id", to: "hyxd#eqp_list"
   get "/hyxd/gun_list", to: "hyxd#gun_list"
   get "/hyxd/gun/:id", to: "hyxd#gun", id: /\d+/
+  get "/hyxd/collect/:ids", to: "hyxd#collect"
 
   #gmdl
   get "/gmdl/article/:id", to: "gmdl#article", id: /\d+/
