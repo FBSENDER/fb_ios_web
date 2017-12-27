@@ -1,5 +1,5 @@
 - title(@article.title)
-- is_turbolinks_cache?(!@contents.any?{|item| item["type"] == 88 || item["type"] == 87})
+- is_turbolinks_cache?(!@contents.any?{|item| item["type"] == 88})
 
 %section.container
   .row
@@ -21,6 +21,8 @@
         - elsif content["type"] == 2
           %p.content #{content["text_content"]}
         - elsif content["type"] == 87
+          %p.content
+            %a{href: "http://game.zhequan.cc/yys/article/#{@article.id}/", target: "_blank", data:{turbolinks: "false"}} 视频加载失败请点我
           .video.player_qq.text-center
             %iframe{src: "#{content['src']}",allowfullscreen: true, frameborder: 0}
           .split
