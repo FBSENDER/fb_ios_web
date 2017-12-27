@@ -22,7 +22,7 @@
           %p.content #{content["text_content"]}
         - elsif content["type"] == 87
           %p.content
-            %a{href: "http://game.zhequan.cc/yys/article/#{@article.id}/", target: "_blank", data:{turbolinks: "false"}} 视频加载失败请点我
+            %a{href: "#{content['src']}", target: "_blank"} 视频加载失败请点我
           .video.player_qq.text-center
             %iframe{src: "#{content['src']}",allowfullscreen: true, frameborder: 0}
           .split
