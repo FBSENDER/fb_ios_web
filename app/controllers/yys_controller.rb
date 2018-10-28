@@ -9,7 +9,7 @@ class YysController < ApplicationController
       return 
     end
     @keyword = params[:keyword].strip
-    @articles = Article.where("title like ? and status = 1", "%#{@keyword}%").select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where("title like ? and status = 1", "%#{@keyword}%").select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     if @articles.nil? || @articles.size.zero? && params[:page].nil?
       redirect_to "#{URI.encode("/yys/hot?message=没有找到...")}"
       return
@@ -58,7 +58,7 @@ class YysController < ApplicationController
   end
 
   def collect
-    @articles = Article.where(status:1, id: params[:ids].split(',').map{|id| id.to_i}).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(status:1, id: params[:ids].split(',').map{|id| id.to_i}).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
@@ -73,7 +73,7 @@ class YysController < ApplicationController
     not_found if @tag.nil?
     @card = Card.where(name: @tag.name).select(:id,:name,:img_url).take
     @yuhun = Yuhun.where(name: @tag.name).select(:img_url,:name,:xiaoguo_1,:xiaoguo_2,:tuijian,:diaoluo,:type_1,:type_2).take
-    @articles = Article.where(status:1, id: @tag.relation_id.split(',')).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(status:1, id: @tag.relation_id.split(',')).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
@@ -93,7 +93,7 @@ class YysController < ApplicationController
     @show_pinglun_ad = false
   end
   def article_gonglve
-    @articles = Article.where(category_id: 1, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(category_id: 1, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
@@ -103,7 +103,7 @@ class YysController < ApplicationController
     render "article_list"
   end
   def article_news
-    @articles = Article.where(category_id: 2, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(category_id: 2, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
@@ -113,7 +113,7 @@ class YysController < ApplicationController
     render "article_list"
   end
   def article_wenda
-    @articles = Article.where(category_id: 3, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(category_id: 3, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
@@ -123,7 +123,7 @@ class YysController < ApplicationController
     render "article_list"
   end
   def article_shipin
-    @articles = Article.where(category_id: 4, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id).order("id desc").paginate(page: params[:page])
+    @articles = Article.where(category_id: 4, status: 1).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
     @path = request.fullpath
     @is_ipad = is_ipad?
     if request.xhr?
