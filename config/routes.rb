@@ -21,6 +21,16 @@ Rails.application.routes.draw do
   get "/yys/download", to: "app#download"
   get "/yys/config_info", to: "app#config_info"
 
+  #mrzh
+  get "/mrzh/collect/:ids", to: "mrzh#collect"
+  get "/mrzh/article_gonglve", to: "mrzh#article_gonglve"
+  get "/mrzh/article_news", to: "mrzh#article_news"
+  get "/mrzh/article_wenda", to: "mrzh#article_wenda"
+  get "/mrzh/article/:id", to: "mrzh#article", id: /\d+/
+  get "/mrzh/tag/:name", to: "mrzh#tag"
+  get "/mrzh/ali_search/:keyword", to: "mrzh#ali_search"
+  get "/mrzh/hot", to: "mrzh#hot"
+
   #hyxd
   get "/hyxd/article_gonglve", to: "hyxd#article_gonglve"
   get "/hyxd/article_news", to: "hyxd#article_news"

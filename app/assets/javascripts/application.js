@@ -113,6 +113,13 @@ var yys_search = function(){
   }
   Turbolinks.visit("/yys/ali_search/" + encodeURI(k) + "/?isFirst=0");
 };
+var mrzh_search = function(){
+  var k = $("#keyword").val();
+  if(k.trim() == ''){
+    return;
+  }
+  Turbolinks.visit("/mrzh/ali_search/" + encodeURI(k) + "/?isFirst=0");
+};
 
 var wzry_search = function(){
   var k = $("#keyword").val();
