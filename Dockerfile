@@ -1,4 +1,4 @@
-FROM my_rails
+FROM fb_bundle_docker
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
