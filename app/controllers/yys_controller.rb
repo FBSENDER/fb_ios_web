@@ -132,6 +132,10 @@ class YysController < ApplicationController
     end
     render "article_list"
   end
+  def card_sp
+    @cards = Card.where(level: 'sp').select(:id,:img_url,:name).order("id desc")
+    render "card_list"
+  end
   def card_ssr
     @cards = Card.where(level: 'ssr').select(:id,:img_url,:name).order("id desc")
     render "card_list"

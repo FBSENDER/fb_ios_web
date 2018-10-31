@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
   #app
   get "/yys/card/:id", to: "yys#card"
+  get "/yys/card_sp", to: "yys#card_sp"
   get "/yys/card_ssr", to: "yys#card_ssr"
   get "/yys/card_sr", to: "yys#card_sr"
   get "/yys/card_r", to: "yys#card_r"
