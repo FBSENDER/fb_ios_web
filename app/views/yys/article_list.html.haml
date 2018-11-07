@@ -7,14 +7,25 @@
       - if @card
         .row
           .col-sm-4.col-xs-4
-            %a{href: "/yys/card/#{@card.id}/"}
-              %img.img-responsive{src: "#{@card.img_url}"}
+            - if @card.id == 104
+              %a#ad_1{href: "/yys/ad_google"}
+                %img.img-responsive{src: "#{@card.img_url}"}
+            - else
+              %a{href: "/yys/card/#{@card.id}/"}
+                %img.img-responsive{src: "#{@card.img_url}"}
           .col-sm-8.col-xs-8
-            %p.title
-              %a{href: "/yys/card/#{@card.id}/"} 
-                #{@card.name}图鉴：
-                %br
-                觉醒 御魂 阵容 评价
+            - if @card.id == 104
+              %p.title
+                %a#ad_2{href: "/yys/ad_google"} 
+                  #{@card.name}图鉴：
+                  %br
+                  觉醒 御魂 阵容 评价
+            - else
+              %p.title
+                %a{href: "/yys/card/#{@card.id}/"} 
+                  #{@card.name}图鉴：
+                  %br
+                  觉醒 御魂 阵容 评价
         .split
       - if @yuhun
         .row

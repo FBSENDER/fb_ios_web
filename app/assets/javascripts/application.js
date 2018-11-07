@@ -18,6 +18,12 @@ $(document).on("turbolinks:load", function(){
     $("img.lazy").lazyload({threshold: 200, effect: "fadeIn"});
   }
   pinglun();
+  $("#ad_1").click(function(){
+    $(this).attr("href","/yys/card/104");
+  });
+  $("#ad_2").click(function(){
+    $(this).attr("href","/yys/card/104");
+  });
   if($("#need_taobao_convert_url").length > 0){
     taodianjin(window,document);
   }

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/yys/yuhun/:id", to: "yys#yuhun"
   get "/yys/collect/:ids", to: "yys#collect"
   get "/yys/ad_google", to: "yys#ad_google"
+  get "/app/ad_google", to: "yys#ad_google"
   get "/yys/article_gonglve", to: "yys#article_gonglve"
   get "/yys/article_news", to: "yys#article_news"
   get "/yys/article_wenda", to: "yys#article_wenda"
