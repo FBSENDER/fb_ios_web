@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   get "/yys/ali_search/:keyword", to: "yys#ali_search"
   get "/yys/jubao", to: "yys#jubao"
   get "/yys/hot", to: "yys#hot"
-  get "/yys/download", to: "app#download"
-  get "/yys/config_info", to: "app#config_info"
+  get "/yys/download", to: "yys#download"
+  get "/yys/config_info", to: "yys#config_info"
 
   #mrzh
   get "/mrzh/collect/:ids", to: "mrzh#collect"
