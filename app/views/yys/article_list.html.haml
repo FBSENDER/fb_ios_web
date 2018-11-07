@@ -8,7 +8,7 @@
         .row
           .col-sm-4.col-xs-4
             - if @card.id == 104
-              %a#ad_1{href: "/yys/ad_google"}
+              %a#ad_1{href: "/add/ad_google"}
                 %img.img-responsive{src: "#{@card.img_url}"}
             - else
               %a{href: "/yys/card/#{@card.id}/"}
@@ -16,7 +16,7 @@
           .col-sm-8.col-xs-8
             - if @card.id == 104
               %p.title
-                %a#ad_2{href: "/yys/ad_google"} 
+                %a#ad_2{href: "/add/ad_google"} 
                   #{@card.name}图鉴：
                   %br
                   觉醒 御魂 阵容 评价
