@@ -8,7 +8,7 @@ class PicController < ApplicationController
     topics.each do |t|
       brand = $brands.select{|b| b.id == t.brand_id}.first
       next if brand.nil?
-      result << {toipc_id: t.id, brand_id: t.brand_id, brand_name: brand.tag_pinyin, img_dir: t.img_dir, thumb_url: t.thumb_url, published_at: t.published_at}
+      result << {toipc_id: t.id, brand_id: t.brand_id, brand_name: brand.tag_pinyin, img_dir: t.img_dir, img_count: t.img_count, thumb_url: t.thumb_url, published_at: t.published_at}
     end
     return result
   end
