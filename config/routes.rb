@@ -94,4 +94,9 @@ Rails.application.routes.draw do
   post "/flash/ipn_notify", to: "flash#ipn_notify"
   post "/flash/:uuid/pia_notify", to: "flash#pia_notify"
   get "/flash/is_in_china", to: "flash#is_in_china"
+
+  #pic
+  get "/pic/home", to: "pic#home"
+  get "/pic/brand", to: "pic#brand"
+  get "/pic/brand_topics/:id", to: "pic#brand_topics"
 end
