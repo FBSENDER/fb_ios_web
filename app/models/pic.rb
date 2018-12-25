@@ -13,3 +13,7 @@ end
 class PicTopicS < ActiveRecord::Base
   self.table_name = 'pic_topics_s'
 end
+
+class PicVersion < ActiveRecord::Base
+  self.table_name = 'pic_versions'
+end

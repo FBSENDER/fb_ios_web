@@ -99,4 +99,5 @@ Rails.application.routes.draw do
   get "/pic/home", to: "pic#home"
   get "/pic/brand", to: "pic#brand"
   get "/pic/brand_topics/:id", to: "pic#brand_topics"
+  get "/pic/version", to: "pic#version"
 end

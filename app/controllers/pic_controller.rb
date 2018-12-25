@@ -52,4 +52,8 @@ class PicController < ApplicationController
     render json: {status: 1, result: result}
   end
 
+  def version
+    render json: {status: 1, version: PicVersion.take.version}
+  end
+
 end
