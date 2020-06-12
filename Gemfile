@@ -5,7 +5,7 @@ gem 'rails', '~> 5.0.0'
 gem 'mysql2'
 gem 'sqlite3'
 gem 'haml-rails', '~> 0.9'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.12'
 gem 'sass-rails', '~> 5.0'
 gem 'listen'
 # Use Uglifier as compressor for JavaScript assets
