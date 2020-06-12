@@ -52,6 +52,25 @@ class PicController < ApplicationController
     render json: {status: 1, result: result}
   end
 
+  def category_topics
+    page = params[:page] || 0
+    page = page.to_i
+    page = page < 0 ? 0 : page
+    if params[:level].to_i == 1
+      topics = PicNewTopic.where(cat_1_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(20 * page).limit(20).to_a
+    elsif params[:level].to_i == 2
+      topics = PicNewTopic.where(cat_2_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(20 * page).limit(20).to_a
+    else
+      render json: {status: 0}
+      return
+    end
+    if topics.size.zero?
+      render json: {status: 0}
+      return
+    end
+    render json: {status: 1, result: topics}
+  end
+
   def version
     render json: {status: 1, version: PicVersion.take.version}
   end

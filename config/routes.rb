@@ -100,4 +100,6 @@ Rails.application.routes.draw do
   get "/pic/brand", to: "pic#brand"
   get "/pic/brand_topics/:id", to: "pic#brand_topics"
   get "/pic/version", to: "pic#version"
+  get "/pic/category", to: "pic#category_topics"
+
 end
