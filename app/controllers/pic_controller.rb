@@ -20,9 +20,9 @@ class PicController < ApplicationController
     page = page.to_i
     r = params[:version] == $rversion
     if r
-      topics = PicTopicS.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicTopicS.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      topics = PicTopic.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicTopic.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
     render json: {status: 1, result: result}
@@ -44,9 +44,9 @@ class PicController < ApplicationController
     page = page.to_i
     r = params[:version] == $rversion
     if r
-      topics = PicTopicS.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicTopicS.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      topics = PicTopic.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicTopic.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
     render json: {status: 1, result: result}
@@ -57,9 +57,9 @@ class PicController < ApplicationController
     page = page.to_i
     page = page < 0 ? 0 : page
     if params[:level].to_i == 1
-      topics = PicNewTopic.where(cat_1_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicNewTopic.where(cat_1_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(10 * page).limit(10).to_a
     elsif params[:level].to_i == 2
-      topics = PicNewTopic.where(cat_2_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(20 * page).limit(20).to_a
+      topics = PicNewTopic.where(cat_2_pinyin: params[:category]).select(:source_id, :thumb_url, :status, :img_dir, :img_count).order("source_id desc").offset(10 * page).limit(10).to_a
     else
       render json: {status: 0}
       return
