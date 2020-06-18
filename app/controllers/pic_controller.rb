@@ -71,6 +71,28 @@ class PicController < ApplicationController
     render json: {status: 1, result: topics}
   end
 
+  def search_topics
+    page = params[:page] || 0
+    page = page.to_i
+    page = page < 0 ? 0 : page
+    if params[:keyword]
+      brand_ids = PicBrand.where("tag_pinyin like ?", "%#{params[:keyword]}%").pluck(:id)
+      if brand_ids.size.zero?
+        render json: {status: 0}
+        return
+      end
+      topics = PicTopic.where(brand_id: brand_ids).where("published_at between ? and ?", params[:bt], params[:et]).order("source_id desc").offset(10 * page).limit(10)
+    else
+      topics = PicTopic.where("published_at between ? and ?", params[:bt], params[:et]).order("source_id desc").offset(10 * page).limit(10)
+    end
+    if topics.size.zero?
+      render json: {status: 0}
+      return
+    end
+    result = build_result(topics)
+    render json: {status: 1, result: result}
+  end
+
   def version
     render json: {status: 1, version: PicVersion.take.version}
   end
