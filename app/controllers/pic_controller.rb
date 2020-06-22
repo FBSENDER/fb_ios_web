@@ -29,14 +29,9 @@ class PicController < ApplicationController
   end
 
   def brand
-    page = params[:page] || 0
-    page = page.to_i
-    r = params[:version] == $rversion
-    if r
-      render json: {status: 1, result: $brandss}
-    else
-      render json: {status: 1, result: $brands}
-    end
+    ids = PicTopic.where(status: 1).pluck(:brand_id).uniq
+    brands = PicBrand.where(id: ids).to_a
+    render json: {status: 1, result: brands}
   end
 
   def brand_topics
