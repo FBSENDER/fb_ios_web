@@ -1,0 +1,19 @@
+.container
+  - @topics.each do |topic|
+    .row
+      .col-md-2
+        %img.img-responsive{src: "#{topic.img_dir}01.jpg"}
+      .col-md-2
+        %img.img-responsive{src: "#{topic.img_dir}02.jpg"}
+      .col-md-2
+        %img.img-responsive{src: "#{topic.img_dir}03.jpg"}
+      .col-md-2
+        %img.img-responsive{src: "#{topic.img_dir}04.jpg"}
+      .col-md-2
+        %img.img-responsive{src: "#{topic.img_dir}05.jpg"}
+      .col-md-2
+        %a.btn{href: "javascript:;", onclick: "enable_topic(#{topic.id})"} 通过
+        %a.btn{href: "javascript:;", onclick: "disable_topic(#{topic.id})"} 拒绝
+:javascript
+  function enable_topic(id){$.get("/pic/enable_topic?id="+id)};
+  function disable_topic(id){$.get("/pic/disable_topic?id="+id)};

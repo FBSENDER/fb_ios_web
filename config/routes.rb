@@ -102,5 +102,8 @@ Rails.application.routes.draw do
   get "/pic/version", to: "pic#version"
   get "/pic/category", to: "pic#category_topics"
   get "/pic/search", to: "pic#search_topics"
+  get "/pic/enable_topic", to: "pic#enable_topic"
+  get "/pic/disable_topic", to: "pic#disable_topic"
+  get "/pic/shenhe_topic_list", to: "pic#shenhe_topic_list"
 
 end
