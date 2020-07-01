@@ -158,7 +158,7 @@ class YysController < ApplicationController
     @path = request.fullpath
     @next = Card.where("id > ?", @card.id).order("id").take
     @pre = Card.where("id < ?", @card.id).order("id desc").take
-    @show_pinglun_ad = is_app_new? && [90,89,87].include?(@card.id)
+    @show_pinglun_ad = [119].include?(@card.id)
     #@show_pinglun_ad = false
   end
   def yuhun
