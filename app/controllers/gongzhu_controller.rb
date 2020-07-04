@@ -23,7 +23,7 @@ class GongzhuController < ApplicationController
     end
     @card = GCard.where(name: @tag.name).select(:id,:name,:img_url).take
     @articles = GArticle.where(status:1, id: @tag.relation_id.split(',')).select(:id,:title,:tags,:img_url,:description,:category_id,:source_id).order("source_id desc").paginate(page: params[:page])
-    render json: {status: 0, card: @card, data: @articles}
+    render json: {status: 1, card: @card, data: @articles}
   end
 
   def article
