@@ -22,6 +22,18 @@ Rails.application.routes.draw do
   get "/yys/download", to: "yys#download"
   get "/yys/config_info", to: "yys#config_info"
 
+  #gongzhu
+  get "/gongzhu/card/:id", to: "gongzhu#card"
+  get "/gongzhu/card_1", to: "gongzhu#card_1"
+  get "/gongzhu/card_2", to: "gongzhu#card_2"
+  get "/gongzhu/card_3", to: "gongzhu#card_3"
+  get "/gongzhu/article_news", to: "gongzhu#article_news"
+  get "/gongzhu/article_gonglve", to: "gongzhu#article_gonglve"
+  get "/gongzhu/article_wenda", to: "gongzhu#article_wenda"
+  get "/gongzhu/article/:id", to: "gongzhu#article", id: /\d+/
+  get "/gongzhu/tag/:name", to: "gongzhu#tag"
+  get "/gongzhu/search/:keyword", to: "gongzhu#search"
+
   #mrzh
   get "/mrzh/collect/:ids", to: "mrzh#collect"
   get "/mrzh/article_gonglve", to: "mrzh#article_gonglve"
