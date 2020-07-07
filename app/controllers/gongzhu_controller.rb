@@ -1,5 +1,6 @@
 require 'gongzhu'
 class GongzhuController < ApplicationController
+  layout "pinglun_layout"
   def search
     tag = GArticleTag.where(name: params[:keyword]).take
     if tag
@@ -76,5 +77,9 @@ class GongzhuController < ApplicationController
     @next = GCard.where("id > ?", @card.id).order("id").select(:id, :img_url, :name).take
     @pre = GCard.where("id < ?", @card.id).order("id desc").select(:id, :img_url, :name).take
     render json: {status: 1, img: @card.img_url, base: @base_info, card: @card_info, shuxing: @shuxing_info, skill: @skill_info, ban: @ban_info, next: @next, pre: @pre}
+  end
+
+  def pinglun
+    @sid = "#{params[:type]}_#{params[:id]}"
   end
 end

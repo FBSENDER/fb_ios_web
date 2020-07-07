@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "/gongzhu/article/:id", to: "gongzhu#article", id: /\d+/
   get "/gongzhu/tag/:name", to: "gongzhu#tag"
   get "/gongzhu/search/:keyword", to: "gongzhu#search"
+  get "/gongzhu/pinglun/", to: "gongzhu#pinglun"
 
   #mrzh
   get "/mrzh/collect/:ids", to: "mrzh#collect"

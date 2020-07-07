@@ -114,7 +114,7 @@ class PicController < ApplicationController
     page = params[:page] || 0
     page = page.to_i
     page = page < 0 ? 0 : page
-    @topics = PicTopic.where(status: 0).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(40 * page).limit(40).to_a
+    @topics = PicTopic.where(status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(40 * page).limit(40).to_a
   end
 
 
