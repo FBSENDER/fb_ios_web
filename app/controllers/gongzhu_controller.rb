@@ -76,7 +76,7 @@ class GongzhuController < ApplicationController
     @ban_info = JSON.parse(@card.ban_info).map{|j| j.split('|')}
     @next = GCard.where("id > ?", @card.id).order("id").select(:id, :img_url, :name).take
     @pre = GCard.where("id < ?", @card.id).order("id desc").select(:id, :img_url, :name).take
-    render json: {status: 1, img: @card.img_url, base: @base_info, card: @card_info, shuxing: @shuxing_info, skill: @skill_info, ban: @ban_info, next: @next, pre: @pre}
+    render json: {status: 1, id: @card.id, name: @card.name, img: @card.img_url, base: @base_info, card: @card_info, shuxing: @shuxing_info, skill: @skill_info, ban: @ban_info, next: @next, pre: @pre}
   end
 
   def pinglun
