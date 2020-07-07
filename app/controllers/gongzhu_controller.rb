@@ -82,4 +82,13 @@ class GongzhuController < ApplicationController
   def pinglun
     @sid = "#{params[:type]}_#{params[:id]}"
   end
+
+  def pinglun_login
+    data = {:is_login => 1, :user => {:img_url => "https://img.18183.com/uploads/allimg/200326/268-2003261416280-L.jpg", :nickname => "默默无闻的游客", :user_id => "1", :profile_url => "http://game.zhequan.cc", :sign => "TR2dgMfO71XkmW34lkMTdIMylQY="}}
+    render :json => data.to_json, :callback => params[:callback]
+  end
+
+  def pinglun_logout
+    render :json => {:is_login => 0}.to_json, :callback => params[:callback]
+  end
 end

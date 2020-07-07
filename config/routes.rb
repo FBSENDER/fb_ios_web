@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get "/gongzhu/tag/:name", to: "gongzhu#tag"
   get "/gongzhu/search/:keyword", to: "gongzhu#search"
   get "/gongzhu/pinglun/", to: "gongzhu#pinglun"
+  get "/gongzhu/pinglun/login", to: "gongzhu#pinglun_login"
+  get "/gongzhu/pinglun/logout", to: "gongzhu#pinglun_logout"
 
   #mrzh
   get "/mrzh/collect/:ids", to: "mrzh#collect"
