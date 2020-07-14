@@ -121,4 +121,8 @@ Rails.application.routes.draw do
   get "/pic/disable_topic", to: "pic#disable_topic"
   get "/pic/shenhe_topic_list", to: "pic#shenhe_topic_list"
 
+  #iosapp
+  get "/iosapp/user_login", to: "iosapp#user_login"
+  get "/iosapp/coupon_order_create", to: "iosapp#coupon_order_create"
+
 end
