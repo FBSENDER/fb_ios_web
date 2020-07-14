@@ -1,6 +1,51 @@
 require 'iosapp'
 class IosappController < ApplicationController
 
+  def coupon_orders
+    app_id = params[:app_id] ? params[:app_id] : ""
+    unless %w(1519578790).include?(app_id)
+      render json: {status: 0}
+      return
+    end
+    uuid = params[:uuid] ? params[:uuid] : ""
+    if uuid.size != 36
+      render json: {status: 0}
+      return
+    end
+    user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
+    if user.nil?
+      render json: {status: 0}
+      return
+    end
+    orders = IOSCouponOrder.where(user_id: user.id).to_a
+    render json: {status: 1, orders: orders}
+  end
+
+  def coupon_order_finish
+    app_id = params[:app_id] ? params[:app_id] : ""
+    unless %w(1519578790).include?(app_id)
+      render json: {status: 0}
+      return
+    end
+    uuid = params[:uuid] ? params[:uuid] : ""
+    if uuid.size != 36
+      render json: {status: 0}
+      return
+    end
+    user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
+    if user.nil?
+      render json: {status: 0}
+      return
+    end
+    order = IOSCouponOrder.where(id: params[:order_id].to_i, user_id: user.id).take
+    if order
+      order.status = 1
+      order.save
+      render json: {status: 1}
+    else
+      render json: {status: 0}
+    end
+  end
   def coupon_order_create
     app_id = params[:app_id] ? params[:app_id] : ""
     unless %w(1519578790).include?(app_id)

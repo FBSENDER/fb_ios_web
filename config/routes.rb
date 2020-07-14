@@ -123,6 +123,8 @@ Rails.application.routes.draw do
 
   #iosapp
   get "/iosapp/user_login", to: "iosapp#user_login"
-  get "/iosapp/coupon_order_create", to: "iosapp#coupon_order_create"
+  post "/iosapp/coupon_order_create", to: "iosapp#coupon_order_create"
+  post "/iosapp/coupon_order_finish", to: "iosapp#coupon_order_finish"
+  get "/iosapp/coupon_orders", to: "iosapp#coupon_orders"
 
 end
