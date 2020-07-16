@@ -1,5 +1,6 @@
 require 'iosapp'
 class IosappController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def coupon_orders
     app_id = params[:app_id] ? params[:app_id] : ""
