@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get "/yys/download", to: "yys#download"
   get "/yys/config_info", to: "yys#config_info"
 
+  #trump
+  get "/trump/haokan_videos", to: "trump#haokan_videos"
+
   #gongzhu
   get "/gongzhu/haokan_videos", to: "gongzhu#haokan_videos"
   get "/gongzhu/card/:id", to: "gongzhu#card"
