@@ -7,3 +7,6 @@ end
 class GArticleTag < ActiveRecord::Base
   self.table_name = 'game_gongzhu_article_tags'
 end
+class GVideo < ActiveRecord::Base
+  self.table_name = 'game_gongzhu_haokan_videos'
+end

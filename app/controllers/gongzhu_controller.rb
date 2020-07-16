@@ -1,6 +1,12 @@
 require 'gongzhu'
 class GongzhuController < ApplicationController
   layout "pinglun_layout"
+
+  def haokan_videos
+    @videos = GVideo.select(:id, :source_id, :title,:url,:img_url,:duration,:published,:read_num, :author).order("id").paginate(page: params[:page])
+    render json: {status: 1, data: @videos}
+  end
+
   def search
     tag = GArticleTag.where(name: params[:keyword]).take
     if tag

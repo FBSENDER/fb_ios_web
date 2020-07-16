@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "/yys/config_info", to: "yys#config_info"
 
   #gongzhu
+  get "/gongzhu/haokan_videos", to: "gongzhu#haokan_videos"
   get "/gongzhu/card/:id", to: "gongzhu#card"
   get "/gongzhu/card_1", to: "gongzhu#card_1"
   get "/gongzhu/card_2", to: "gongzhu#card_2"
