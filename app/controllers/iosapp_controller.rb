@@ -2,9 +2,11 @@ require 'iosapp'
 class IosappController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  $ios_app_ids = %(1519578790 1517830498)
+
   def coupon_orders
     app_id = params[:app_id] ? params[:app_id] : ""
-    unless %w(1519578790).include?(app_id)
+    unless $ios_app_ids.include?(app_id)
       render json: {status: 0}
       return
     end
@@ -24,7 +26,7 @@ class IosappController < ApplicationController
 
   def coupon_order_finish
     app_id = params[:app_id] ? params[:app_id] : ""
-    unless %w(1519578790).include?(app_id)
+    unless $ios_app_ids.include?(app_id)
       render json: {status: 0}
       return
     end
@@ -52,7 +54,7 @@ class IosappController < ApplicationController
   end
   def coupon_order_create
     app_id = params[:app_id] ? params[:app_id] : ""
-    unless %w(1519578790).include?(app_id)
+    unless $ios_app_ids.include?(app_id)
       render json: {status: 0}
       return
     end
@@ -97,7 +99,7 @@ class IosappController < ApplicationController
 
   def user_login
     app_id = params[:app_id] ? params[:app_id] : ""
-    unless %w(1519578790).include?(app_id)
+    unless $ios_app_ids.include?(app_id)
       render json: {status: 0}
       return
     end
