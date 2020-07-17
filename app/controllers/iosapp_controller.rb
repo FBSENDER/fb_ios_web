@@ -42,6 +42,9 @@ class IosappController < ApplicationController
     if order
       order.status = 1
       order.save
+      user.level = 1
+      user.save
+      user_log(user, 2)
       render json: {status: 1}
     else
       render json: {status: 0}
@@ -105,7 +108,7 @@ class IosappController < ApplicationController
     end
     user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
     if user
-      render json: {status: 1, user_id: user.id}
+      render json: {status: 1, user_id: user.id, level: user.level}
       user_log(user, 1)
       user_login_again(user)
       return
@@ -117,7 +120,7 @@ class IosappController < ApplicationController
       user.last_login = Time.now
       user.save
       user_log(user, 1)
-      render json: {status: 1, user_id: user.id}
+      render json: {status: 1, user_id: user.id, level: 0}
     end
   end
 
