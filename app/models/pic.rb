@@ -25,3 +25,7 @@ end
 class PicNewTopic < ActiveRecord::Base
   self.table_name = "pic_new_topics"
 end
+
+class PicHaokanVideo < ActiveRecord::Base
+  self.table_name = "pic_haokan_videos"
+end

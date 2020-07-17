@@ -115,6 +115,7 @@ Rails.application.routes.draw do
   get "/flash/is_in_china", to: "flash#is_in_china"
 
   #pic
+  get "/pic/haokan_videos", to: "pic#haokan_videos"
   get "/pic/home", to: "pic#home"
   get "/pic/brand", to: "pic#brand"
   get "/pic/brand_topics/:id", to: "pic#brand_topics"

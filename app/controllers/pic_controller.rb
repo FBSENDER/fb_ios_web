@@ -5,6 +5,11 @@ class PicController < ApplicationController
   $brandss = PicBrandS.all.to_a
   $rversion = "1.0"
 
+  def haokan_videos
+    @videos = PicHaokanVideo.select(:id, :source_id, :title,:url,:img_url,:duration,:published,:read_num, :author).order("id").paginate(page: params[:page])
+    render json: {status: 1, data: @videos}
+  end
+
   def build_result(topics, r = false)
     result = []
     topics.each do |t|
