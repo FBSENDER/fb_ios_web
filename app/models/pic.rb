@@ -29,3 +29,7 @@ end
 class PicHaokanVideo < ActiveRecord::Base
   self.table_name = "pic_haokan_videos"
 end
+
+class YongyiHaokanVideo < ActiveRecord::Base
+  self.table_name = "yongyi_haokan_videos"
+end

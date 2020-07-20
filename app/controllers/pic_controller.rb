@@ -10,6 +10,11 @@ class PicController < ApplicationController
     render json: {status: 1, data: @videos}
   end
 
+  def yongyi_haokan_videos
+    @videos = YongyiHaokanVideo.select(:id, :source_id, :title,:url,:img_url,:duration,:published,:read_num, :author).order("id").paginate(page: params[:page])
+    render json: {status: 1, data: @videos}
+  end
+
   def build_result(topics, r = false)
     result = []
     topics.each do |t|

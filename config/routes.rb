@@ -116,6 +116,7 @@ Rails.application.routes.draw do
 
   #pic
   get "/pic/haokan_videos", to: "pic#haokan_videos"
+  get "/pic/yongyi_haokan_videos", to: "pic#yongyi_haokan_videos"
   get "/pic/home", to: "pic#home"
   get "/pic/brand", to: "pic#brand"
   get "/pic/brand_topics/:id", to: "pic#brand_topics"
