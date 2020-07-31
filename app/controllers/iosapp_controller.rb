@@ -2,7 +2,7 @@ require 'iosapp'
 class IosappController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  $ios_app_ids = %(1519578790 1517830498)
+  $ios_app_ids = %(1519578790 1517830498 1516808404 1522189191)
 
   def coupon_orders
     app_id = params[:app_id] ? params[:app_id] : ""

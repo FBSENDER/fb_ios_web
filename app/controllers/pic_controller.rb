@@ -20,7 +20,7 @@ class PicController < ApplicationController
     topics.each do |t|
       brand = r ? $brandss.select{|b| b.id == t.brand_id}.first : $brands.select{|b| b.id == t.brand_id}.first
       next if brand.nil?
-      result << {topic_id: t.id, brand_id: t.brand_id, brand_name: brand.tag_pinyin, img_dir: t.img_dir, img_count: t.img_count > 5 ? 5 : t.img_count, thumb_url: t.thumb_url, avatar_url: brand.avatar_url, published_at: t.published_at.strftime("%Y-%m-%d")}
+      result << {topic_id: t.id, brand_id: t.brand_id, brand_name: brand.tag_pinyin, img_dir: t.img_dir, img_count: t.img_count, thumb_url: t.thumb_url, avatar_url: brand.avatar_url, published_at: t.published_at.strftime("%Y-%m-%d")}
     end
     return result
   end
@@ -32,14 +32,16 @@ class PicController < ApplicationController
     if r
       topics = PicTopicS.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      topics = PicTopic.where(status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      #topics = PicTopic.where(status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      topics = PicTopic.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
     render json: {status: 1, result: result}
   end
 
   def brand
-    ids = PicTopic.where(status: 1).pluck(:brand_id).uniq
+    #ids = PicTopic.where(status: 1).pluck(:brand_id).uniq
+    ids = PicTopic.pluck(:brand_id).uniq
     brands = PicBrand.where(id: ids).to_a
     render json: {status: 1, result: brands}
   end
@@ -51,7 +53,8 @@ class PicController < ApplicationController
     if r
       topics = PicTopicS.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      topics = PicTopic.where(brand_id: params[:id].to_i, status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      #topics = PicTopic.where(brand_id: params[:id].to_i, status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      topics = PicTopic.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
     render json: {status: 1, result: result}
