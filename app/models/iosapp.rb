@@ -9,3 +9,11 @@ end
 class IOSCouponOrder < ActiveRecord::Base
   self.table_name = 'iosapp_coupon_orders'
 end
+
+class IOSOrder < ActiveRecord::Base
+  self.table_name = 'iosapp_orders'
+end
+
+class IOSReceipt < ActiveRecord::Base
+  self.table_name = 'iosapp_receipts'
+end

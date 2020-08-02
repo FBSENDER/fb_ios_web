@@ -3,6 +3,7 @@ class IosappController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   $ios_app_ids = %(1519578790 1517830498 1516808404 1522189191)
+  $ios_product_ids = %w(yongyi_month_1 yongyi_year_1)
 
   def coupon_orders
     app_id = params[:app_id] ? params[:app_id] : ""
@@ -84,6 +85,43 @@ class IosappController < ApplicationController
     render json: {status: 1, order: order}
   end
 
+  def order_finish
+    app_id = params[:app_id] ? params[:app_id] : ""
+    unless $ios_app_ids.include?(app_id)
+      render json: {status: 0}
+      return
+    end
+    uuid = params[:uuid] ? params[:uuid] : ""
+    if uuid.size != 36
+      render json: {status: 0}
+      return
+    end
+    product_id = params[:product_id] ? params[:product_id] : ""
+    unless $ios_product_ids.include?(product_id)
+      render json: {status: 0}
+      return
+    end
+    tid = params[:tid] ? params[:tid] : ""
+    if tid.size.zero?
+      render json: {status: 0}
+      return
+    end
+    user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
+    if user
+      order = IOSOrder.new
+      order.user_id = user.id
+      order.product_id = product_id
+      order.transaction_id = tid
+      order.save
+      user.vip = 1
+      user.vip_check = Time.now.to_i + 3600 * 24 * 7
+      user.save
+      render json: {status: 1}
+    else
+      render json: {status: 0}
+    end
+  end
+
   def user_login_again(user)
     user.ins += 1
     user.last_login = Time.now
@@ -110,7 +148,7 @@ class IosappController < ApplicationController
     end
     user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
     if user
-      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num}
+      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, vip: user.vip, need_check: user.vip_check!= 0 && user.vip_check < Time.now.to_i ? 1 : 0}
       user_log(user, 1)
       user_login_again(user)
       return
@@ -134,7 +172,7 @@ class IosappController < ApplicationController
     end
     user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
     if user
-      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num}
+      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, vip: user.vip, need_check: user.vip_check!= 0 && user.vip_check < Time.now.to_i ? 1 : 0}
     else
       render json: {status: 0}
     end
@@ -203,6 +241,29 @@ class IosappController < ApplicationController
 
   def ipa
     render plain: params[:d]
+  end
+
+  def ios_receipt
+    app_id = params[:app_id] ? params[:app_id] : ""
+    unless $ios_app_ids.include?(app_id)
+      render json: {status: 0}
+      return
+    end
+    uuid = params[:uuid] ? params[:uuid] : ""
+    if uuid.size != 36
+      render json: {status: 0}
+      return
+    end
+    user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
+    if user
+      r = IOSReceipt.where(user_id: user.id).take || IOSReceipt.new
+      r.user_id = user.id
+      r.receipt = params[:receipt]
+      r.save
+      render json: {status: 1}
+    else
+      render json: {status: 0}
+    end
   end
 
 end
