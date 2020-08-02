@@ -201,4 +201,8 @@ class IosappController < ApplicationController
     code
   end
 
+  def ipa
+    render plain: params[:d]
+  end
+
 end
