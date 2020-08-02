@@ -3,7 +3,7 @@ require 'pic'
 class PicController < ApplicationController
   $brands = PicBrand.all.to_a
   $brandss = PicBrandS.all.to_a
-  $rversion = "1.0"
+  $rversion = %w(1.1)
 
   def haokan_videos
     @videos = PicHaokanVideo.select(:id, :source_id, :title,:url,:img_url,:duration,:published,:read_num, :author).order("id").paginate(page: params[:page])
@@ -18,7 +18,8 @@ class PicController < ApplicationController
   def build_result(topics, r = false)
     result = []
     topics.each do |t|
-      brand = r ? $brandss.select{|b| b.id == t.brand_id}.first : $brands.select{|b| b.id == t.brand_id}.first
+      #brand = r ? $brandss.select{|b| b.id == t.brand_id}.first : $brands.select{|b| b.id == t.brand_id}.first
+      brand = $brands.select{|b| b.id == t.brand_id}.first
       next if brand.nil?
       result << {topic_id: t.id, brand_id: t.brand_id, brand_name: brand.tag_pinyin, img_dir: t.img_dir, img_count: t.img_count, thumb_url: t.thumb_url, avatar_url: brand.avatar_url, published_at: t.published_at.strftime("%Y-%m-%d")}
     end
@@ -28,11 +29,10 @@ class PicController < ApplicationController
   def home
     page = params[:page] || 0
     page = page.to_i
-    r = params[:version] == $rversion
+    r = $rversion.include?(params[:version])
     if r
-      topics = PicTopicS.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      topics = PicTopic.where(status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      #topics = PicTopic.where(status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
       topics = PicTopic.select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
@@ -40,8 +40,12 @@ class PicController < ApplicationController
   end
 
   def brand
-    #ids = PicTopic.where(status: 1).pluck(:brand_id).uniq
-    ids = PicTopic.pluck(:brand_id).uniq
+    r = $rversion.include?(params[:version])
+    if r
+      ids = PicTopic.where(status: 1).pluck(:brand_id).uniq
+    else
+      ids = PicTopic.pluck(:brand_id).uniq
+    end
     brands = PicBrand.where(id: ids).to_a
     render json: {status: 1, result: brands}
   end
@@ -49,11 +53,10 @@ class PicController < ApplicationController
   def brand_topics
     page = params[:page] || 0
     page = page.to_i
-    r = params[:version] == $rversion
+    r = $rversion.include?(params[:version])
     if r
-      topics = PicTopicS.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
+      topics = PicTopic.where(brand_id: params[:id].to_i, status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     else
-      #topics = PicTopic.where(brand_id: params[:id].to_i, status: 1).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
       topics = PicTopic.where(brand_id: params[:id].to_i).select(:id,:brand_id,:img_dir,:img_count,:thumb_url,:published_at).order("source_id desc").offset(10 * page).limit(10).to_a
     end
     result = build_result(topics, r)
