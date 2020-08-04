@@ -148,14 +148,14 @@ class IosappController < ApplicationController
     end
     user = IOSUser.where(ios_uuid: uuid, app_id: app_id).take
     if user
-      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, vip: user.vip, need_check: user.vip_check!= 0 && user.vip_check < Time.now.to_i ? 1 : 0}
+      render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, vip: user.vip, need_check: user.vip_check!= 0 && user.vip_check < Time.now.to_i ? 1 : 0, guide: params[:version] == "1.1" ? 0 : 1}
       user_log(user, 1)
       user_login_again(user)
       return
     else
       user = new_user(uuid, app_id)
       user_log(user, 1)
-      render json: {status: 1, user_id: user.id, level: 0, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num}
+      render json: {status: 1, user_id: user.id, level: 0, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, guide: params[:version] == "1.1" ? 0 : 1}
     end
   end
 
