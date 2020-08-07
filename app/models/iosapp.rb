@@ -17,3 +17,19 @@ end
 class IOSReceipt < ActiveRecord::Base
   self.table_name = 'iosapp_receipts'
 end
+
+class FavDomain < ActiveRecord::Base
+  self.table_name = 'fav_domains'
+end
+
+class FavVideoTag < ActiveRecord::Base
+  self.table_name = 'fav_video_tags'
+end
+
+class FavVideo < ActiveRecord::Base
+  self.table_name = 'fav_videos'
+end
+
+class FavRelation < ActiveRecord::Base
+  self.table_name = 'fav_video_tag_relations'
+end

@@ -136,5 +136,13 @@ Rails.application.routes.draw do
   get "/iosapp/coupon_orders", to: "iosapp#coupon_orders"
   post "/iosapp/order_finish", to: "iosapp#order_finish"
   post "/iosapp/ios_receipt", to: "iosapp#ios_receipt"
+  get "/iosapp/fav_domains", to: "iosapp#fav_domains"
+  post "/iosapp/new_fav_tag", to: "iosapp#new_fav_tag"
+  post "/iosapp/new_fav_video", to: "iosapp#new_fav_video"
+  get "/iosapp/domain_tags", to: "iosapp#domain_tags"
+  get "/iosapp/fav_video", to: "iosapp#fav_video"
+  get "/iosapp/fav_video_tag", to: "iosapp#fav_video_tag"
+  get "/iosapp/top_fav_video_tag", to: "iosapp#top_fav_video_tag"
+  get "/iosapp/top_fav_video", to: "iosapp#top_fav_video"
 
 end

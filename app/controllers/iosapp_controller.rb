@@ -266,4 +266,115 @@ class IosappController < ApplicationController
     end
   end
 
+  def fav_domains
+    data = FavDomain.all.to_a
+    render json: {status: 1, result: data}
+  end
+
+  def new_fav_tag
+    domain = params[:domain_id].to_i
+    name = params[:tag] ? params[:tag].strip : ""
+    if domain == 0 || name.empty?
+      render json: {status: 0}
+      return
+    end
+    t = FavVideoTag.where(name: name, domain_id: domain).take
+    if t
+      render json: {status: 1, result: t}
+    else
+      t = FavVideoTag.new
+      t.name = name
+      t.domain_id = domain
+      t.save
+      render json: {status: 1, result: t}
+    end
+  end
+
+  def domain_tags
+    tags = FavVideoTag.where(domain_id: params[:domain_id].to_i)
+    render json: {status: 1, result: tags}
+  end
+
+  def new_fav_video
+    begin
+      v = FavVideo.where(source_id: params[:source_id]).take
+      if v.nil?
+        v = FavVideo.new
+        v.source_id = params[:source_id]
+        v.source_site = params[:source_site]
+        v.tags = ""
+        v.title = params[:title]
+        v.url = params[:url]
+        v.img_url = params[:img_url]
+        v.duration = params[:duration]
+        v.published = params[:published]
+        v.read_num = params[:read_num]
+        v.author = params[:author]
+        v.save
+      end
+      tag = FavVideoTag.where(id: params[:tag_id].to_i).take
+      if tag.nil? || tag.name != params[:tag_name]
+        render json: {status: 0}
+        return
+      end
+      r = FavRelation.where(video_id: v.id, tag_id: params[:tag_id].to_i).take
+      if r.nil?
+        r = FavRelation.new
+        r.tag_id = tag.id
+        r.video_id = v.id
+        r.sort = 1000
+        r.save
+      end
+      tags = v.tags.split(',')
+      tags << tag.name
+      tags = tags.uniq
+      v.tags = tags.join(',')
+      v.save
+      render json: {status: 1}
+    rescue
+      render json: {status: 0}
+    end
+  end
+
+  def fav_video
+    v = FavVideo.where(source_id: params[:source_id]).take
+    if v
+      render json: {status: 1, result: v}
+    else
+      render json: {status: 0}
+    end
+  end
+
+  def fav_video_tag
+    t = FavVideoTag.where(name: params[:tag]).take
+    if t.nil?
+      render json: {status: 0}
+      return
+    end
+    page = params[:page].to_i
+    page = 0 if page < 0
+    vids = FavRelation.where(tag_id: t.id).order("sort asc, id desc").offset(page * 20).limit(20).pluck(:video_id)
+    videos = FavVideo.where(id: vids).to_a
+    render json: {status: 1, result: videos}
+  end
+  
+  def top_fav_video_tag
+    r = FavRelation.where(video_id: params[:video_id].to_i, tag_id: params[:tag_id].to_i).take
+    if r
+      r.sort = 0
+      r.save
+      render json: {status: 1}
+    else
+      render json: {status: 0}
+    end
+  end
+
+  def top_fav_video
+    FavRelation.where(video_id: params[:video_id].to_i).each do |r|
+      r.sort = 0
+      r.save
+    end
+    render json: {status: 1}
+  end
+
 end
