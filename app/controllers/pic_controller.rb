@@ -3,7 +3,7 @@ require 'pic'
 class PicController < ApplicationController
   $brands = PicBrand.all.to_a
   $brandss = PicBrandS.all.to_a
-  $rversion = %w(1.1)
+  $rversion = %w(1.2)
 
   def haokan_videos
     @videos = PicHaokanVideo.select(:id, :source_id, :title,:url,:img_url,:duration,:published,:read_num, :author).order("id").paginate(page: params[:page])
