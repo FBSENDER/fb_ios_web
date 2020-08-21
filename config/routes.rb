@@ -40,6 +40,13 @@ Rails.application.routes.draw do
   get "/gongzhu/pinglun/", to: "gongzhu#pinglun"
   get "/gongzhu/pinglun/login", to: "gongzhu#pinglun_login"
   get "/gongzhu/pinglun/logout", to: "gongzhu#pinglun_logout"
+  #fangzhou
+  get "/fangzhou/articles", to: "fangzhou#article_list"
+  get "/fangzhou/article/:id", to: "fangzhou#article", id: /\d+/
+  get "/fangzhou/search/:keyword", to: "fangzhou#search"
+  get "/fangzhou/cards", to: "fangzhou#cards"
+  get "/fangzhou/card/:id", to: "fangzhou#card"
+
 
   #mrzh
   get "/mrzh/collect/:ids", to: "mrzh#collect"
