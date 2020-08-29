@@ -151,7 +151,7 @@ class IosappController < ApplicationController
       guide = 1
       guide = 0 if params[:app_id] == "1216210315" && params[:version] == "1.0" #ymq in review
       guide = 0 if params[:app_id] == "1516808404" && params[:version] == "1.1" #yongyi in review
-      guide = 0 if params[:app_id] == "1529708750" && params[:version] == "1.0" #fangzhou in review
+      #guide = 0 if params[:app_id] == "1529708750" && params[:version] == "1.0" #fangzhou in review
       render json: {status: 1, user_id: user.id, level: user.level, code: user.ios_code, invite_by: user.invite_code, invite_num: user.invite_num, vip: user.vip, need_check: user.vip_check!= 0 && user.vip_check < Time.now.to_i ? 1 : 0, guide: guide}
       user_log(user, 1)
       user_login_again(user)
