@@ -46,6 +46,12 @@ Rails.application.routes.draw do
   get "/fangzhou/search/:keyword", to: "fangzhou#search"
   get "/fangzhou/cards", to: "fangzhou#cards"
   get "/fangzhou/card/:id", to: "fangzhou#card"
+  #yuanzheng
+  get "/yuanzheng/articles", to: "yuanzheng#article_list"
+  get "/yuanzheng/article/:id", to: "yuanzheng#article", id: /\d+/
+  get "/yuanzheng/search/:keyword", to: "yuanzheng#search"
+  get "/yuanzheng/cards", to: "yuanzheng#cards"
+  get "/yuanzheng/fubens", to: "yuanzheng#fubens"
 
 
   #mrzh

@@ -19,3 +19,15 @@ end
 class FArticleTag < ActiveRecord::Base
   self.table_name = 'game_fangzhou_article_tags'
 end
+class YArticle < ActiveRecord::Base
+  self.table_name = 'game_yuanzheng_articles'
+end
+class YArticleTag < ActiveRecord::Base
+  self.table_name = 'game_yuanzheng_article_tags'
+end
+class YCard < ActiveRecord::Base
+  self.table_name = 'game_yuanzheng_cards'
+end
+class YFuben < ActiveRecord::Base
+  self.table_name = 'game_yuanzheng_fubens'
+end

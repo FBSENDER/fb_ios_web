@@ -7,8 +7,8 @@ class FangzhouController < ApplicationController
       render json: {status: 0}
       return
     end
-    @next = FArticle.where("id > ? and category_id = ? and status = 1", @article.id, @article.category_id).order("id").select(:id, :title).take
-    @pre = FArticle.where("id < ? and category_id = ? and status = 1", @article.id, @article.category_id).order("id desc").select(:id, :title).take
+    @next = FArticle.where("id > ? and category_id = ?", @article.id, @article.category_id).order("id").select(:id, :title).take
+    @pre = FArticle.where("id < ? and category_id = ?", @article.id, @article.category_id).order("id desc").select(:id, :title).take
     render json: {status: 1, title: @article.title, tags: @article.tags.split(','), category_id: @article.category_id, content: JSON.parse(@article.article_content), next: @next, pre: @pre}
   end
 
