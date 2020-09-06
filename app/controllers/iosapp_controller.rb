@@ -2,7 +2,7 @@ require 'iosapp'
 class IosappController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  $ios_app_ids = %(1519578790 1517830498 1516808404 1522189191 1216210315 1529708750 1530028239)
+  $ios_app_ids = %(1519578790 1517830498 1516808404 1522189191 1216210315 1529708750 1530028239 1530729831 1530682334 1530575903 1530388543)
   $ios_product_ids = %w(yongyi_month_1 yongyi_year_1)
 
   def coupon_orders

@@ -31,3 +31,12 @@ end
 class YFuben < ActiveRecord::Base
   self.table_name = 'game_yuanzheng_fubens'
 end
+class YsArticle < ActiveRecord::Base
+  self.table_name = 'game_yuanshen_articles'
+end
+class YsArticleTag < ActiveRecord::Base
+  self.table_name = 'game_yuanshen_article_tags'
+end
+class YsCard < ActiveRecord::Base
+  self.table_name = 'game_yuanshen_cards'
+end

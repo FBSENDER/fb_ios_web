@@ -52,6 +52,15 @@ Rails.application.routes.draw do
   get "/yuanzheng/search/:keyword", to: "yuanzheng#search"
   get "/yuanzheng/cards", to: "yuanzheng#cards"
   get "/yuanzheng/fubens", to: "yuanzheng#fubens"
+  #yuanshen
+  get "/yuanshen/articles", to: "yuanshen#article_list"
+  get "/yuanshen/article/:id", to: "yuanshen#article", id: /\d+/
+  get "/yuanshen/search/:keyword", to: "yuanshen#search"
+  get "/yuanshen/juese", to: "yuanshen#juese"
+  get "/yuanshen/wuqi", to: "yuanshen#wuqi"
+  get "/yuanshen/shengyiwu", to: "yuanshen#shengyiwu"
+  get "/yuanshen/shipu", to: "yuanshen#shipu"
+  get "/yuanshen/cailiao", to: "yuanshen#cailiao"
 
 
   #mrzh
