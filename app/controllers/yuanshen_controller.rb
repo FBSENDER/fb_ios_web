@@ -1,35 +1,10 @@
 require 'gongzhu'
 class YuanshenController < ApplicationController
-  def juese
-    cards = YsCard.where(card_type: 1).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
+  def cards
+    cards = YsCard.where(card_type: params[:card_type].to_i).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
     types = cards.map{|c| c.fenlei}.uniq
     render json: {cards: cards, types: types}
   end
-
-  def wuqi
-    cards = YsCard.where(card_type: 2).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
-    types = cards.map{|c| c.fenlei}.uniq
-    render json: {cards: cards, types: types}
-  end
-
-  def shengyiwu
-    cards = YsCard.where(card_type: 3).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
-    types = cards.map{|c| c.fenlei}.uniq
-    render json: {cards: cards, types: types}
-  end
-
-  def shipu
-    cards = YsCard.where(card_type: 4).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
-    types = cards.map{|c| c.fenlei}.uniq
-    render json: {cards: cards, types: types}
-  end
-
-  def cailiao
-    cards = YsCard.where(card_type: 5).select(:id, :name, :avatar, :fenlei, :article_id).order(:id).to_a
-    types = cards.map{|c| c.fenlei}.uniq
-    render json: {cards: cards, types: types}
-  end
-
   def article
     @article = YsArticle.where(id: params[:id].to_i).take
     if @article.nil?
