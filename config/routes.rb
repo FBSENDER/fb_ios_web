@@ -41,11 +41,11 @@ Rails.application.routes.draw do
   get "/gongzhu/pinglun/login", to: "gongzhu#pinglun_login"
   get "/gongzhu/pinglun/logout", to: "gongzhu#pinglun_logout"
   #fangzhou
-  get "/fangzhou/articles", to: "fangzhou#article_list"
-  get "/fangzhou/article/:id", to: "fangzhou#article", id: /\d+/
-  get "/fangzhou/search/:keyword", to: "fangzhou#search"
-  get "/fangzhou/cards", to: "fangzhou#cards"
-  get "/fangzhou/card/:id", to: "fangzhou#card"
+  get "/fz/articles", to: "fangzhou#article_list"
+  get "/fz/article/:id", to: "fangzhou#article", id: /\d+/
+  get "/fz/search/:keyword", to: "fangzhou#search"
+  get "/fz/cards", to: "fangzhou#cards"
+  get "/fz/card/:id", to: "fangzhou#card"
   #yuanzheng
   get "/yuanzheng/articles", to: "yuanzheng#article_list"
   get "/yuanzheng/article/:id", to: "yuanzheng#article", id: /\d+/
